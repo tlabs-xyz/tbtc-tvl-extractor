@@ -27,6 +27,9 @@ jobs:
         env:
           THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
 
+      - name: Verify output exists
+        run: ls -la ./data/output/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
