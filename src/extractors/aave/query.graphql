@@ -1,0 +1,23 @@
+query GetTBTCReserve($underlyingAsset: Bytes!) {
+  reserves(where: { underlyingAsset: $underlyingAsset }) {
+    id
+    name
+    symbol
+    decimals
+    underlyingAsset
+
+    # Key fields for TVL
+    totalLiquidity
+    availableLiquidity
+    totalATokenSupply
+
+    # Rates (for context)
+    liquidityRate
+    variableBorrowRate
+
+    # Price (optional)
+    price {
+      priceInEth
+    }
+  }
+}

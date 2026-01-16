@@ -1,0 +1,15 @@
+query GetCurvePoolsWithTBTC($token: Bytes!) {
+  pools(
+    where: {
+      coins_contains: [$token]
+    }
+    first: 100
+  ) {
+    id
+    name
+    coins
+    coinDecimals
+    balances
+    lpToken
+  }
+}

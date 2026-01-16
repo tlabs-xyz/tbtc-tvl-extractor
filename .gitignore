@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Output (regenerated on each run)
+data/output/
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Debug/test scripts
+*.mjs
+check-*.js
+test-*.js
+fetch-*.js
+debug-*.js
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*

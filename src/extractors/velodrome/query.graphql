@@ -1,0 +1,17 @@
+query GetTBTCPools($token: Bytes!) {
+  liquidityPools(
+    where: { inputTokens_contains: [$token] }
+    first: 1000
+    orderBy: totalValueLockedUSD
+    orderDirection: desc
+  ) {
+    id
+    name
+    inputTokens {
+      id
+      decimals
+    }
+    inputTokenBalances
+    totalValueLockedUSD
+  }
+}

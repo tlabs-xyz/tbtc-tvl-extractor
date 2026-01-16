@@ -1,0 +1,28 @@
+query GetTBTCPools($token: String!) {
+  pools(
+    where: {
+      or: [
+        { token0: $token },
+        { token1: $token }
+      ]
+    }
+    first: 1000
+    orderBy: totalValueLockedUSD
+    orderDirection: desc
+  ) {
+    id
+    token0 {
+      id
+      symbol
+      decimals
+    }
+    token1 {
+      id
+      symbol
+      decimals
+    }
+    totalValueLockedToken0
+    totalValueLockedToken1
+    feeTier
+  }
+}

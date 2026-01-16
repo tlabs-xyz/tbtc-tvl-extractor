@@ -1,0 +1,57 @@
+{
+  "tbtc_addresses": {
+    "ethereum": {
+      "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+      "decimals": 18,
+      "chain_id": 1,
+      "format": "EVM"
+    },
+    "arbitrum": {
+      "address": "0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "decimals": 18,
+      "chain_id": 42161,
+      "format": "EVM"
+    },
+    "base": {
+      "address": "0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b",
+      "decimals": 18,
+      "chain_id": 8453,
+      "format": "EVM"
+    },
+    "optimism": {
+      "address": "0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "decimals": 18,
+      "chain_id": 10,
+      "format": "EVM"
+    },
+    "polygon": {
+      "address": "0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b",
+      "decimals": 18,
+      "chain_id": 137,
+      "format": "EVM"
+    },
+    "solana": {
+      "address": "6DNSN2BJsaPFdFFc1zP37kkeNe4Usc1Sqkzr9C9vPWcU",
+      "decimals": 8,
+      "format": "Solana"
+    },
+    "starknet": {
+      "address": "0x04daa17763b286d1e59b97c283c0b8c949994c361e426a28f743c67bdfe9a32f",
+      "decimals": 18,
+      "format": "Starknet"
+    },
+    "sui": {
+      "address": "0x77045f1b9f811a7a8fb9ebd085b5b0c55c5cb0d1520ff55f7037f89b5da9f5f1",
+      "decimals": 8,
+      "format": "Sui"
+    }
+  },
+  "notes": {
+    "source": "https://docs.threshold.network/resources/contract-addresses/mainnet/tbtc",
+    "updated": "2026-01-08",
+    "shared_addresses": {
+      "arbitrum_optimism": "Both Arbitrum and Optimism use the same address: 0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40",
+      "base_polygon": "Both Base and Polygon use the same address: 0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b"
+    }
+  }
+}

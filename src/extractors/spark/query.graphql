@@ -1,0 +1,15 @@
+query GetTBTCMarket($inputToken: String!) {
+  markets(where: { inputToken_: { id: $inputToken } }) {
+    id
+    name
+    inputToken {
+      id
+      symbol
+      decimals
+    }
+    inputTokenBalance
+    inputTokenPriceUSD
+    totalValueLockedUSD
+    totalDepositBalanceUSD
+  }
+}

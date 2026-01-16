@@ -1,0 +1,24 @@
+# Query to get all markets where tBTC is used as collateral
+# Uses Paperclip Labs Compound V3 Community Subgraph schema
+query GetTBTCCollateralTokens($token: Bytes!) {
+  collateralTokens(
+    where: { token: $token }
+  ) {
+    id
+    token {
+      address
+      symbol
+      decimals
+    }
+    market {
+      id
+      configuration {
+        baseToken {
+          token {
+            symbol
+          }
+        }
+      }
+    }
+  }
+}

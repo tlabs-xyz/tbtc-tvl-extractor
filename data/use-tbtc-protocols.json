@@ -1,0 +1,198 @@
+[
+  {
+    "protocol": "Aave",
+    "category": "Lending",
+    "chain": "Ethereum",
+    "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x18084fba666a33d37592fa2633fd49a74dd93a88&marketName=proto_mainnet_v3",
+    "tvl": 0
+  },
+  {
+    "protocol": "Asymmetry",
+    "category": "Lending",
+    "chain": "Ethereum",
+    "url": "https://usdaf.asymmetry.finance/borrow/tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Compound",
+    "category": "Lending",
+    "chain": "Ethereum",
+    "url": "https://app.compound.finance/markets",
+    "tvl": 0
+  },
+  {
+    "protocol": "Curve",
+    "category": "DEX",
+    "chain": "Ethereum",
+    "url": "https://www.curve.finance/dex/ethereum/pools/?search=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Gearbox",
+    "category": "Leverage",
+    "chain": "Ethereum",
+    "url": "https://app.gearbox.fi/pools/1/0xf791ecc5f2472637eac9dfe3f7894c0b32c32bdf",
+    "tvl": 0
+  },
+  {
+    "protocol": "Merkl",
+    "category": "Yield",
+    "chain": "Ethereum",
+    "url": "https://app.merkl.xyz/opportunities/ethereum/UNISWAP_V4/0x0dd11e1def156d20c60de1e7b4f7f4268c411ee9349b5593766579b26ce98183",
+    "tvl": 0
+  },
+  {
+    "protocol": "Spark/Maker",
+    "category": "Lending",
+    "chain": "Ethereum",
+    "url": "https://app.spark.fi/borrow",
+    "tvl": 0
+  },
+  {
+    "protocol": "Uniswap",
+    "category": "DEX",
+    "chain": "Ethereum",
+    "url": "https://app.uniswap.org/explore/tokens/ethereum/0x18084fba666a33d37592fa2633fd49a74dd93a88?inputCurrency=NATIVE",
+    "tvl": 0
+  },
+  {
+    "protocol": "Yield Basis",
+    "category": "Vault",
+    "chain": "Ethereum",
+    "url": "https://yieldbasis.com/earn/0xaC0a340C1644321D0BBc6404946d828c1EBfAC92",
+    "tvl": 0
+  },
+  {
+    "protocol": "Aave",
+    "category": "Lending",
+    "chain": "Arbitrum",
+    "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x6c84a8f1c29108f47a79964b5fe888d4f4d0de40&marketName=proto_arbitrum_v3",
+    "tvl": 0
+  },
+  {
+    "protocol": "Curve",
+    "category": "DEX",
+    "chain": "Arbitrum",
+    "url": "https://www.curve.finance/dex/arbitrum/pools/?search=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Nerite",
+    "category": "Lending",
+    "chain": "Arbitrum",
+    "url": "https://app.nerite.org/borrow/tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Uniswap",
+    "category": "DEX",
+    "chain": "Arbitrum",
+    "url": "https://app.uniswap.org/explore/tokens/arbitrum/0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40?inputCurrency=NATIVE",
+    "tvl": 0
+  },
+  {
+    "protocol": "Aave",
+    "category": "Lending",
+    "chain": "Base",
+    "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x236aa50979d5f3de3bd1eeb40e81137f22ab794b&marketName=proto_base_v3",
+    "tvl": 0
+  },
+  {
+    "protocol": "Aerodrome",
+    "category": "DEX",
+    "chain": "Base",
+    "url": "https://aerodrome.finance/liquidity?query=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Curve",
+    "category": "DEX",
+    "chain": "Base",
+    "url": "https://www.curve.finance/dex/base/pools/?search=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Curve",
+    "category": "DEX",
+    "chain": "Optimism",
+    "url": "https://www.curve.finance/dex/optimism/pools/?search=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Uniswap",
+    "category": "DEX",
+    "chain": "Optimism",
+    "url": "https://app.uniswap.org/explore/tokens/optimism/0x6c84a8f1c29108f47a79964b5fe888d4f4d0de40?inputCurrency=NATIVE",
+    "tvl": 0
+  },
+  {
+    "protocol": "Velodrome",
+    "category": "DEX",
+    "chain": "Optimism",
+    "url": "https://velodrome.finance/liquidity?query=tbtc",
+    "tvl": 0
+  },
+  {
+    "protocol": "Ekubo",
+    "category": "DEX",
+    "chain": "Starknet",
+    "url": "https://app.ekubo.org/charts/tBTC/WBTC?",
+    "tvl": 0
+  },
+  {
+    "protocol": "Endur",
+    "category": "Staking",
+    "chain": "Starknet",
+    "url": "https://app.endur.fi/tbtc?ref=blog.threshold.network",
+    "tvl": 0
+  },
+  {
+    "protocol": "Vesu",
+    "category": "Lending",
+    "chain": "Starknet",
+    "url": "https://vesu.xyz/earn/0x03a8416bf20d036df5b1cf3447630a2e1cb04685f6b0c3a70ed7fb1473548ecf/0x04daa17763b286d1e59b97c283c0b8c949994c361e426a28f743c67bdfe9a32f",
+    "tvl": 0
+  },
+  {
+    "protocol": "Starknet Earn",
+    "category": "Staking",
+    "chain": "Starknet",
+    "url": "https://earn.starknet.io",
+    "tvl": 0
+  },
+  {
+    "protocol": "0D",
+    "category": "Vault",
+    "chain": "Starknet",
+    "url": "https://vesu.xyz/vaults/0x0045d72e2e6faaeb657eaacb2f41aee761887a12ca12a138fbf93147d202e1b4",
+    "tvl": 0
+  },
+  {
+    "protocol": "AlphaLend",
+    "category": "Lending",
+    "chain": "Sui",
+    "url": "https://alphalend.xyz/market/tBTC",
+    "tvl": 0
+  },
+  {
+    "protocol": "Bluefin",
+    "category": "DEX",
+    "chain": "Sui",
+    "url": "https://trade.bluefin.io/deposit/0x4ac34b740c30972b2ba10c417aa5a446fd0fe90a2bb62f9091683423f61202ab",
+    "tvl": 0
+  },
+  {
+    "protocol": "Bucket",
+    "category": "Lending",
+    "chain": "Sui",
+    "url": "https://www.bucketprotocol.io/borrow?token=tBTC",
+    "tvl": 0
+  },
+  {
+    "protocol": "Ember",
+    "category": "Vault",
+    "chain": "Sui",
+    "url": "https://ember.so/earn/eBTC",
+    "tvl": 0
+  }
+]
