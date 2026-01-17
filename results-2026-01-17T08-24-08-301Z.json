@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "timestamp": "2026-01-17T08:24:08.300Z",
+    "version": "1.0.0",
+    "runId": "0072f399-6281-4f60-9d29-e1673f37a027"
+  },
+  "chains": {
+    "ethereum": {
+      "totalTvl": "1345398172371291047951",
+      "protocols": [
+        {
+          "name": "Curve",
+          "tvl": "786817745076748009498",
+          "timestamp": "2026-01-17T08:22:55.778Z",
+          "blockNumber": 24253240,
+          "source": "rpc"
+        },
+        {
+          "name": "Gearbox",
+          "tvl": "303207693762534616",
+          "timestamp": "2026-01-17T08:22:55.999Z",
+          "blockNumber": 24253240,
+          "source": "rpc"
+        },
+        {
+          "name": "Yield Basis",
+          "tvl": "558277219600780503837",
+          "timestamp": "2026-01-17T08:23:10.803Z",
+          "blockNumber": 24253241,
+          "source": "rpc"
+        }
+      ]
+    },
+    "arbitrum": {
+      "totalTvl": "21316102983056462320",
+      "protocols": [
+        {
+          "name": "Curve",
+          "tvl": "21316102983056462320",
+          "timestamp": "2026-01-17T08:23:21.190Z",
+          "blockNumber": 422246679,
+          "source": "rpc"
+        }
+      ]
+    },
+    "base": {
+      "totalTvl": "4161403481926389474",
+      "protocols": [
+        {
+          "name": "Curve",
+          "tvl": "4161403481926389474",
+          "timestamp": "2026-01-17T08:23:52.340Z",
+          "blockNumber": 40924442,
+          "source": "rpc"
+        }
+      ]
+    },
+    "optimism": {
+      "totalTvl": "0",
+      "protocols": [
+        {
+          "name": "Curve",
+          "tvl": "0",
+          "timestamp": "2026-01-17T08:23:53.347Z",
+          "source": "rpc"
+        }
+      ]
+    },
+    "starknet": {
+      "totalTvl": "22802823451953156204",
+      "protocols": [
+        {
+          "name": "Ekubo",
+          "tvl": "22802823451953156204",
+          "timestamp": "2026-01-17T08:24:05.830Z",
+          "blockNumber": 5684390,
+          "source": "rpc"
+        },
+        {
+          "name": "Endur",
+          "tvl": "0",
+          "timestamp": "2026-01-17T08:24:06.100Z",
+          "blockNumber": 5684390,
+          "source": "rpc"
+        },
+        {
+          "name": "Vesu",
+          "tvl": "0",
+          "timestamp": "2026-01-17T08:24:06.729Z",
+          "blockNumber": 5684390,
+          "source": "rpc"
+        }
+      ]
+    },
+    "sui": {
+      "totalTvl": "86026940430000000000",
+      "protocols": [
+        {
+          "name": "AlphaLend",
+          "tvl": "0",
+          "timestamp": "2026-01-17T08:24:07.149Z",
+          "source": "rpc"
+        },
+        {
+          "name": "Bucket",
+          "tvl": "5771320000000000",
+          "timestamp": "2026-01-17T08:24:07.460Z",
+          "source": "rpc"
+        },
+        {
+          "name": "Ember",
+          "tvl": "86021169110000000000",
+          "timestamp": "2026-01-17T08:24:08.299Z",
+          "source": "api"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalTvl": "1479705442718227055949",
+    "successRate": 1,
+    "protocolCount": 9,
+    "chainCount": 6
+  },
+  "validationReport": {
+    "passed": true,
+    "warnings": [
+      {
+        "level": "warning",
+        "message": "TVL is zero",
+        "protocol": "Curve",
+        "chain": "optimism"
+      },
+      {
+        "level": "warning",
+        "message": "TVL is zero",
+        "protocol": "Endur",
+        "chain": "starknet"
+      },
+      {
+        "level": "warning",
+        "message": "TVL is zero",
+        "protocol": "Vesu",
+        "chain": "starknet"
+      },
+      {
+        "level": "warning",
+        "message": "TVL is zero",
+        "protocol": "AlphaLend",
+        "chain": "sui"
+      }
+    ],
+    "errors": [],
+    "summary": {
+      "totalChecks": 24,
+      "passedChecks": 24,
+      "warningCount": 4,
+      "errorCount": 0
+    }
+  }
+}
