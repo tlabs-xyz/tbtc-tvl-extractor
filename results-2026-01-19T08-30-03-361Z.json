@@ -1,56 +1,56 @@
 {
   "metadata": {
-    "timestamp": "2026-01-18T08:24:23.186Z",
+    "timestamp": "2026-01-19T08:30:03.360Z",
     "version": "1.0.0",
-    "runId": "e4655320-3786-41e3-ac17-baa08a3faaa7"
+    "runId": "801baea2-fe96-4fc9-931b-9cb3e65118ab"
   },
   "chains": {
     "ethereum": {
-      "totalTvl": "1337891036204986112513",
+      "totalTvl": "1315010618353553763756",
       "protocols": [
         {
           "name": "Curve",
-          "tvl": "782082198753984442998",
-          "timestamp": "2026-01-18T08:22:54.871Z",
-          "blockNumber": 24260418,
+          "tvl": "771602932755840936906",
+          "timestamp": "2026-01-19T08:28:50.097Z",
+          "blockNumber": 24267625,
           "source": "rpc"
         },
         {
           "name": "Gearbox",
-          "tvl": "303217124895556268",
-          "timestamp": "2026-01-18T08:23:05.134Z",
-          "blockNumber": 24260419,
+          "tvl": "303226592700113068",
+          "timestamp": "2026-01-19T08:28:50.178Z",
+          "blockNumber": 24267625,
           "source": "rpc"
         },
         {
           "name": "Yield Basis",
-          "tvl": "555505620326106113247",
-          "timestamp": "2026-01-18T08:23:32.008Z",
-          "blockNumber": 24260421,
+          "tvl": "543104459005012713782",
+          "timestamp": "2026-01-19T08:29:13.166Z",
+          "blockNumber": 24267626,
           "source": "rpc"
         }
       ]
     },
     "arbitrum": {
-      "totalTvl": "21716211148056462320",
+      "totalTvl": "20948218745655305450",
       "protocols": [
         {
           "name": "Curve",
-          "tvl": "21716211148056462320",
-          "timestamp": "2026-01-18T08:23:39.192Z",
-          "blockNumber": 422591747,
+          "tvl": "20948218745655305450",
+          "timestamp": "2026-01-19T08:29:20.191Z",
+          "blockNumber": 422938550,
           "source": "rpc"
         }
       ]
     },
     "base": {
-      "totalTvl": "2180107330918841425",
+      "totalTvl": "2127023339374516435",
       "protocols": [
         {
           "name": "Curve",
-          "tvl": "2180107330918841425",
-          "timestamp": "2026-01-18T08:24:08.220Z",
-          "blockNumber": 40967650,
+          "tvl": "2127023339374516435",
+          "timestamp": "2026-01-19T08:29:49.109Z",
+          "blockNumber": 41011020,
           "source": "rpc"
         }
       ]
@@ -61,63 +61,63 @@
         {
           "name": "Curve",
           "tvl": "0",
-          "timestamp": "2026-01-18T08:24:08.856Z",
+          "timestamp": "2026-01-19T08:29:49.466Z",
           "source": "rpc"
         }
       ]
     },
     "starknet": {
-      "totalTvl": "22799664803949927955",
+      "totalTvl": "21797556137034318947",
       "protocols": [
         {
           "name": "Ekubo",
-          "tvl": "22799664803949927955",
-          "timestamp": "2026-01-18T08:24:21.294Z",
-          "blockNumber": 5725981,
+          "tvl": "21797556137034318947",
+          "timestamp": "2026-01-19T08:30:01.928Z",
+          "blockNumber": 5767585,
           "source": "rpc"
         },
         {
           "name": "Endur",
           "tvl": "0",
-          "timestamp": "2026-01-18T08:24:21.535Z",
-          "blockNumber": 5725981,
+          "timestamp": "2026-01-19T08:30:02.175Z",
+          "blockNumber": 5767585,
           "source": "rpc"
         },
         {
           "name": "Vesu",
           "tvl": "0",
-          "timestamp": "2026-01-18T08:24:22.201Z",
-          "blockNumber": 5725982,
+          "timestamp": "2026-01-19T08:30:02.721Z",
+          "blockNumber": 5767585,
           "source": "rpc"
         }
       ]
     },
     "sui": {
-      "totalTvl": "85592601600000000000",
+      "totalTvl": "85572803170000000000",
       "protocols": [
         {
           "name": "AlphaLend",
           "tvl": "0",
-          "timestamp": "2026-01-18T08:24:22.547Z",
+          "timestamp": "2026-01-19T08:30:02.968Z",
           "source": "rpc"
         },
         {
           "name": "Bucket",
           "tvl": "5771320000000000",
-          "timestamp": "2026-01-18T08:24:22.740Z",
+          "timestamp": "2026-01-19T08:30:03.019Z",
           "source": "rpc"
         },
         {
           "name": "Ember",
-          "tvl": "85586830280000000000",
-          "timestamp": "2026-01-18T08:24:23.185Z",
+          "tvl": "85567031850000000000",
+          "timestamp": "2026-01-19T08:30:03.359Z",
           "source": "api"
         }
       ]
     }
   },
   "summary": {
-    "totalTvl": "1470179621087911344213",
+    "totalTvl": "1445456219745617904588",
     "successRate": 1,
     "protocolCount": 9,
     "chainCount": 6
