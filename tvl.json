@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "-1"
+    "tvl": "1774.656872548669785006"
   },
   {
     "protocol": "Asymmetry",
@@ -12,17 +12,17 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "-1"
+    "tvl": "533.597530911729069803"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "783.774705163020727268"
+    "tvl": "780.425658972242936713"
   },
   {
     "protocol": "Gearbox",
     "chain": "Ethereum",
-    "tvl": "0.303236015974948617"
+    "tvl": "0.30323711612100308"
   },
   {
     "protocol": "Merkl",
@@ -32,22 +32,22 @@
   {
     "protocol": "Spark/Maker",
     "chain": "Ethereum",
-    "tvl": "-1"
+    "tvl": "126.658506421035699958"
   },
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "-1"
+    "tvl": "27.062894923623195152"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "556.946412480432500745"
+    "tvl": "553.959342928657429665"
   },
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "-1"
+    "tvl": "17.383457495619779314"
   },
   {
     "protocol": "Curve",
@@ -62,22 +62,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "-1"
+    "tvl": "10.414114546186760142"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "-1"
+    "tvl": "8.09013989128967204"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "-1"
+    "tvl": "17.469116703626320428"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.235890213731443435"
+    "tvl": "0.000083551932319737"
   },
   {
     "protocol": "Curve",
@@ -87,17 +87,17 @@
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "-1"
+    "tvl": "0.851196772028878124"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "-1"
+    "tvl": "0.000000014060092428"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "24.794097476454150521"
+    "tvl": "23.79592133149816234"
   },
   {
     "protocol": "Endur",
