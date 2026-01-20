@@ -67,7 +67,7 @@ function normalizeProtocolName(protocol: string): string {
   // Normalize protocol names to match extractor naming
   const normalized = protocol.toLowerCase()
   if (normalized === 'aave') return 'Aave V3'
-  if (normalized === 'uniswap') return 'Uniswap V3'
+  if (normalized === 'uniswap') return 'Uniswap'
   if (normalized === 'compound') return 'Compound'
   if (normalized === 'curve') return 'Curve'
   if (normalized === 'spark/maker') return 'Spark Lend'

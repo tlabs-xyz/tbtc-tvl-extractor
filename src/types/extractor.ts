@@ -8,7 +8,8 @@ export enum ExtractionSource {
 
 export interface ExtractionMetadata {
   source: ExtractionSource
-  endpoint: string
+  endpoint?: string
+  endpoints?: string[]  // For protocols querying multiple subgraphs (e.g., Uniswap V3 + V4)
   poolCount?: number  // Number of pools queried (for RPC mode)
 }
 
