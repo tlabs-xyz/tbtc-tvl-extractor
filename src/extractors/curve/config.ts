@@ -1,7 +1,6 @@
 import { Chain } from '../../types/index.js'
 
 // All chains now use RPC + Curve API auto-discovery
-// Subgraphs were unreliable (Messari didn't index TwoCrypto-NG Factory, etc.)
 
 // Known Curve pools containing tBTC (for chains using RPC mode)
 export interface CurvePool {
@@ -61,8 +60,15 @@ export const CURVE_ARBITRUM_POOLS: CurvePool[] = [
   }
 ]
 
-// Optimism has no tBTC Curve pools as of Jan 2026
-export const CURVE_OPTIMISM_POOLS: CurvePool[] = []
+// Optimism Curve pools containing tBTC
+export const CURVE_OPTIMISM_POOLS: CurvePool[] = [
+  {
+    // Factory Plain Pool: 2BTC (tBTC/WBTC)
+    // https://optimism.curve.finance/factory/63
+    poolAddress: '0x1Dc5c0f8668a9F54ED922171d578011850ca0341',
+    name: '2BTC (factory-63)'
+  }
+]
 
 // Get pools for a specific chain (fallback if API discovery fails)
 export function getCurvePoolsForChain(chain: Chain): CurvePool[] {
@@ -93,6 +99,7 @@ export const CURVE_API_CHAIN_NAMES: Partial<Record<Chain, string>> = {
 export const CURVE_POOL_TYPES = [
   'main',
   'crypto',
+  'factory',
   'factory-stable-ng',
   'factory-crvusd',
   'factory-twocrypto',
