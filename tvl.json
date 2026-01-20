@@ -17,12 +17,12 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "771.602932755840936906"
+    "tvl": "783.774705163020727268"
   },
   {
     "protocol": "Gearbox",
     "chain": "Ethereum",
-    "tvl": "0.303226592700113068"
+    "tvl": "0.303236015974948617"
   },
   {
     "protocol": "Merkl",
@@ -42,7 +42,7 @@
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "543.104459005012713782"
+    "tvl": "556.946412480432500745"
   },
   {
     "protocol": "Aave",
@@ -52,7 +52,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "20.94821874565530545"
+    "tvl": "21.759972671962329464"
   },
   {
     "protocol": "Nerite",
@@ -77,7 +77,7 @@
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.127023339374516435"
+    "tvl": "2.235890213731443435"
   },
   {
     "protocol": "Curve",
@@ -97,7 +97,7 @@
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "21.797556137034318947"
+    "tvl": "24.794097476454150521"
   },
   {
     "protocol": "Endur",
@@ -137,6 +137,6 @@
   {
     "protocol": "Ember",
     "chain": "Sui",
-    "tvl": "85.56703185"
+    "tvl": "86.19116459"
   }
 ]
