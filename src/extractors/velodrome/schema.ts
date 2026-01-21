@@ -8,9 +8,7 @@ export const VelodromePoolSchema = z.object({
     inputTokens: z.array(z.object({
       id: z.string(),
       decimals: z.number()
-    })),
-    inputTokenBalances: z.array(z.string()),
-    totalValueLockedUSD: z.string()
+    }))
   }))
 })
 
