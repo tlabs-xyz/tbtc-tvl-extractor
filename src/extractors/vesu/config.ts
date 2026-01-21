@@ -24,10 +24,15 @@ export const VESU_V1_POOLS: Partial<Record<Chain, string[]>> = {
 }
 
 // V2 Pools (separate contracts that hold assets directly)
+// Source: https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/projects/vesu/index.js
 export const VESU_V2_POOLS: Partial<Record<Chain, string[]>> = {
   [Chain.STARKNET]: [
-    '0x451fe483d5921a2919ddd81d0de6696669bccdacd859f72a4fba7656b97c3b5', // Vesu Prime
-    '0x16afa342e0f0b1b8c8cc26b03f93af9ade7aa3298c4d2f9d6d17ee93e9b8df1'  // Re7 Prime
+    '0x451fe483d5921a2919ddd81d0de6696669bccdacd859f72a4fba7656b97c3b5', // Vesu Prime Pool
+    '0x2eef0c13b10b487ea5916b54c0a7f98ec43fb3048f60fdeedaf5b08f6f88aaf', // Re7 USDC Prime Pool
+    '0x3976cac265a12609934089004df458ea29c776d77da423c96dc761d09d24124', // Re7 USDC Core Pool
+    '0x3a8416bf20d036df5b1cf3447630a2e1cb04685f6b0c3a70ed7fb1473548ecf', // Re7 xBTC Pool
+    '0x73702fce24aba36da1eac539bd4bae62d4d6a76747b7cdd3e016da754d7a135', // Re7 USDC Stable Core Pool
+    '0x5c03e7e0ccfe79c634782388eb1e6ed4e8e2a013ab0fcc055140805e46261bd'  // Re7 USDC Frontier Pool
   ]
 }
 
