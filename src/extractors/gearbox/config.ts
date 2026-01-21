@@ -23,6 +23,10 @@ export interface GearboxPool {
 export const GEARBOX_TBTC_POOLS: Partial<Record<Chain, GearboxPool[]>> = {
   [Chain.ETHEREUM]: [
     {
+      address: '0x7354ec6e852108411e681d13e11185c3a2567981',
+      name: 'Chaos Labs tBTC v3 Pool'
+    },
+    {
       address: '0xf791ecc5f2472637eac9dfe3f7894c0b32c32bdf',
       name: 'Re7 tBTC Pool'
     }
