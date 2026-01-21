@@ -46,7 +46,7 @@ const SKIP_PROTOCOLS: Record<string, Record<string, string>> = {
     'Starknet': 'Vesu vault wrapper, TVL counted in Vesu'
   },
   'Bluefin': {
-    'Sui': 'Perps DEX, no spot TVL subgraph'
+    'Sui': 'Spot pools covered under AlphaLend (same protocol)'
   }
 }
 

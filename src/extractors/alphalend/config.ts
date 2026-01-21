@@ -1,10 +1,14 @@
 /**
- * AlphaLend Protocol Configuration (Sui)
+ * Bluefin/AlphaLend Protocol Configuration (Sui)
  *
- * AlphaLend is a lending protocol on Sui that supports multiple collateral types
- * including tBTC.
+ * Bluefin is a DEX on Sui with:
+ * - AlphaLend: Lending protocol supporting tBTC
+ * - Spot pools: AMM pools for tBTC trading
  *
- * Data source: Direct Sui RPC calls (dynamic field queries)
+ * Data sources:
+ * - Lending: Direct Sui RPC calls (dynamic field queries)
+ * - Spot: Bluefin Swap API
+ *
  * Reference: DefiLlama adapter https://github.com/DefiLlama/DefiLlama-Adapters/blob/main/projects/bluefin-alphalend/index.js
  */
 
@@ -20,3 +24,9 @@ export const ALPHALEND_MARKET_TYPE = '0x8f8ded194f7a4d68950e44c9ff83a041b4a1c7cb
 
 // tBTC coin type on Sui
 export const SUI_TBTC_COIN_TYPE = '0x77045f1b9f811a7a8fb9ebd085b5b0c55c5cb0d1520ff55f7037f89b5da9f5f1::TBTC::TBTC'
+
+// Bluefin Swap API endpoint for spot pools
+export const BLUEFIN_API_URL = 'https://swap.api.sui-prod.bluefin.io/api/v1/pools/info'
+
+// tBTC token symbols to match in spot pools
+export const TBTC_SYMBOLS = ['tBTC', 'TBTC']

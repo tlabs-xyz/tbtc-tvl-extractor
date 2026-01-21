@@ -1,6 +1,6 @@
 import { BaseExtractor } from '../base.js'
 import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
-import { SUI_RPC_URL, ALPHALEND_MARKETS_CONTAINER, SUI_TBTC_COIN_TYPE } from './config.js'
+import { SUI_RPC_URL, ALPHALEND_MARKETS_CONTAINER, SUI_TBTC_COIN_TYPE, BLUEFIN_API_URL, TBTC_SYMBOLS } from './config.js'
 
 interface DynamicFieldPage {
   data: Array<{
@@ -15,11 +15,40 @@ interface MarketObject {
   data?: {
     content?: {
       fields?: {
-        balance_holding?: string
-        borrowed_amount?: string
+        value?: {
+          fields?: {
+            coin_type?: {
+              fields?: {
+                name?: string
+              }
+            }
+            balance_holding?: string
+            borrowed_amount?: string
+          }
+        }
       }
     }
     type?: string
+  }
+}
+
+interface BluefinPool {
+  address: string
+  symbol: string
+  tvl: string
+  tokenA: {
+    amount: string
+    info: {
+      symbol: string
+      decimals: number
+    }
+  }
+  tokenB: {
+    amount: string
+    info: {
+      symbol: string
+      decimals: number
+    }
   }
 }
 
@@ -30,7 +59,7 @@ export class AlphaLendExtractor extends BaseExtractor {
 
   async extract(chain: Chain): Promise<ExtractionResult> {
     return this.withRetry(
-      () => this.extractViaRpc(chain),
+      () => this.extractAll(chain),
       `AlphaLend extraction for ${chain}`
     )
   }
@@ -54,79 +83,135 @@ export class AlphaLendExtractor extends BaseExtractor {
     return data.result
   }
 
-  private extractCoinType(typeString: string): string | null {
-    // Extract coin type from Market<CoinType> pattern
-    // Example: "0x...::market::Market<0x77045f1b9f811a7a8fb9ebd085b5b0c55c5cb0d1520ff55f7037f89b5da9f5f1::TBTC::TBTC>"
-    const match = typeString.match(/<(.+)>$/)
-    return match ? match[1] : null
+  private extractCoinType(marketObj: MarketObject): string | null {
+    const name = marketObj?.data?.content?.fields?.value?.fields?.coin_type?.fields?.name
+    return name ? `0x${name}` : null
   }
 
-  private async extractViaRpc(chain: Chain): Promise<ExtractionResult> {
-    // Get all dynamic fields from the markets container
+  private isTbtcSymbol(symbol: string): boolean {
+    const normalized = symbol.toUpperCase()
+    return TBTC_SYMBOLS.some(s => normalized === s.toUpperCase())
+  }
+
+  private async extractAll(chain: Chain): Promise<ExtractionResult> {
+    // Extract both lending and spot pool TVL
+    const [lendingTvl, spotTvl] = await Promise.all([
+      this.extractLendingTvl(),
+      this.extractSpotTvl()
+    ])
+
+    const totalTvl = lendingTvl + spotTvl
+
+    this.logger.info({
+      lendingTvl: lendingTvl.toString(),
+      spotTvl: spotTvl.toString(),
+      totalTvl: totalTvl.toString()
+    }, 'AlphaLend total TVL extracted (lending + spot)')
+
+    return {
+      protocol: this.protocolName,
+      chain,
+      tvl: totalTvl,
+      timestamp: new Date(),
+      metadata: {
+        source: this.source,
+        endpoint: SUI_RPC_URL,
+        lendingTvl: lendingTvl.toString(),
+        spotTvl: spotTvl.toString()
+      }
+    }
+  }
+
+  private async extractLendingTvl(): Promise<bigint> {
     let cursor: string | undefined
     let tbtcBalance = 0n
-    let tbtcMarketFound = false
 
     do {
       const dynamicFields = await this.suiRpc('suix_getDynamicFields', [
         ALPHALEND_MARKETS_CONTAINER,
         cursor,
-        50 // limit
+        50
       ]) as DynamicFieldPage
 
-      // Get all market object IDs from this page
-      const marketObjectIds = dynamicFields.data
-        .filter(field => field.name.type.includes('::market::Market'))
-        .map(field => field.objectId)
+      const marketObjectIds = dynamicFields.data.map(field => field.objectId)
 
       if (marketObjectIds.length > 0) {
-        // Batch fetch all market objects
         const marketObjects = await this.suiRpc('sui_multiGetObjects', [
           marketObjectIds,
           { showContent: true, showType: true }
         ]) as MarketObject[]
 
-        // Find tBTC market and get its balance
         for (const marketObj of marketObjects) {
-          const objectType = marketObj?.data?.type
-          if (!objectType) continue
+          const coinType = this.extractCoinType(marketObj)
+          if (!coinType) continue
 
-          const coinType = this.extractCoinType(objectType)
           if (coinType === SUI_TBTC_COIN_TYPE) {
-            const fields = marketObj.data?.content?.fields
-            const balanceHolding = BigInt(fields?.balance_holding || '0')
+            const valueFields = marketObj.data?.content?.fields?.value?.fields
+            const balanceHolding = BigInt(valueFields?.balance_holding || '0')
+            const borrowedAmount = BigInt(valueFields?.borrowed_amount || '0')
 
-            tbtcBalance = balanceHolding
-            tbtcMarketFound = true
+            // Total supply = available balance + borrowed amount
+            tbtcBalance = balanceHolding + borrowedAmount
 
             this.logger.debug({
               coinType,
-              balanceHolding: balanceHolding.toString()
-            }, 'Found tBTC market in AlphaLend')
+              balanceHolding: balanceHolding.toString(),
+              borrowedAmount: borrowedAmount.toString(),
+              totalSupply: tbtcBalance.toString()
+            }, 'Found tBTC lending market')
 
-            break
+            // Convert from 8 decimals to 18 decimals
+            return tbtcBalance * 10n ** 10n
           }
         }
       }
 
       cursor = dynamicFields.hasNextPage ? dynamicFields.nextCursor : undefined
-    } while (cursor && !tbtcMarketFound)
+    } while (cursor)
 
-    // Convert from 8 decimals (Sui tBTC) to 18 decimals (standard)
-    const tvl = tbtcBalance * 10n ** 10n
+    return 0n
+  }
 
-    this.logger.debug({
-      tbtcMarketFound,
-      tbtcBalance: tbtcBalance.toString(),
-      tvl: tvl.toString()
-    }, 'AlphaLend tBTC balance extracted')
+  private async extractSpotTvl(): Promise<bigint> {
+    try {
+      const response = await fetch(BLUEFIN_API_URL, {
+        headers: { 'Accept': 'application/json' }
+      })
 
-    return {
-      protocol: this.protocolName,
-      chain,
-      tvl,
-      timestamp: new Date(),
-      metadata: { source: this.source, endpoint: SUI_RPC_URL }
+      if (!response.ok) {
+        this.logger.warn({ status: response.status }, 'Bluefin API error, skipping spot pools')
+        return 0n
+      }
+
+      const pools = await response.json() as BluefinPool[]
+      let totalTbtc = 0n
+      let poolCount = 0
+
+      for (const pool of pools) {
+        const tokenASymbol = pool.tokenA?.info?.symbol || ''
+        const tokenBSymbol = pool.tokenB?.info?.symbol || ''
+
+        if (this.isTbtcSymbol(tokenASymbol)) {
+          totalTbtc += BigInt(pool.tokenA.amount || '0')
+          poolCount++
+        }
+
+        if (this.isTbtcSymbol(tokenBSymbol)) {
+          totalTbtc += BigInt(pool.tokenB.amount || '0')
+          poolCount++
+        }
+      }
+
+      this.logger.debug({
+        poolCount,
+        totalTbtc: totalTbtc.toString()
+      }, 'Found tBTC in Bluefin spot pools')
+
+      // Convert from 8 decimals to 18 decimals
+      return totalTbtc * 10n ** 10n
+    } catch (error) {
+      this.logger.warn({ error: error instanceof Error ? error.message : String(error) }, 'Failed to fetch Bluefin spot pools')
+      return 0n
     }
   }
 }
