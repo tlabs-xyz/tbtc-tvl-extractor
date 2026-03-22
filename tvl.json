@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1860.230673707118479695"
+    "tvl": "1860.049586411870560839"
   },
   {
     "protocol": "Asymmetry",
@@ -47,12 +47,12 @@
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "20.214020371124161795"
+    "tvl": "20.235855540780176915"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "8.778014026995407192"
+    "tvl": "8.777790704067760838"
   },
   {
     "protocol": "Nerite",
@@ -62,52 +62,52 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "7.539924897397372126"
+    "tvl": "7.589360636398397682"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "10.778312761148500759"
+    "tvl": "10.757104795768261402"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "5.792834262949447646"
+    "tvl": "4.618240807414549276"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.144945610241763366"
+    "tvl": "2.144954279531825"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.291308160077309436"
+    "tvl": "1.293422892262026888"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.291095435389595116"
+    "tvl": "0.349644712800992516"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "4.163674658630667786"
+    "tvl": "4.212889074962843614"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "26.812107998992012871"
+    "tvl": "29.973223723843428567"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "19.558750449677792982"
+    "tvl": "19.560129192552667208"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "26.196308761318519744"
+    "tvl": "26.196694718807054239"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "53.20687312"
+    "tvl": "52.8885204"
   },
   {
     "protocol": "Bluefin",
