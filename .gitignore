@@ -30,3 +30,6 @@ debug-*.js
 # Logs
 *.log
 npm-debug.log*
+
+# Local task tracking
+tasks/todo.md

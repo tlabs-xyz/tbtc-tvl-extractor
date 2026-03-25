@@ -3,7 +3,7 @@ import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
 import { createPublicClient, parseAbi, getAddress, type Address } from 'viem'
 import { mainnet } from 'viem/chains'
 import { TBTC_ADDRESSES } from '../../config/index.js'
-import { CHAIN_CONFIGS, createEvmHttpTransport } from '../../config/chains.js'
+import { CHAIN_CONFIGS, createEvmHttpTransport, getConfiguredRpcEndpoints } from '../../config/chains.js'
 import { YIELD_BASIS_FACTORY } from './config.js'
 
 const FACTORY_ABI = parseAbi([
@@ -22,6 +22,8 @@ const ERC20_ABI = parseAbi([
 ])
 
 type MarketTuple = readonly [Address, Address, Address, Address, bigint, bigint]
+const MARKET_DISCOVERY_BATCH = 250
+const MAX_MARKETS = 5000n
 
 export class YieldBasisExtractor extends BaseExtractor {
   readonly protocolName = 'Yield Basis'
@@ -57,30 +59,76 @@ export class YieldBasisExtractor extends BaseExtractor {
       abi: FACTORY_ABI,
       functionName: 'market_count'
     })
-
-    const marketsResults = await client.multicall({
-      contracts: Array.from({ length: Number(marketCount) }, (_, i) => ({
-        address: checksummedFactory,
-        abi: FACTORY_ABI,
-        functionName: 'markets',
-        args: [BigInt(i)]
-      })),
-      allowFailure: true
-    })
+    if (marketCount > MAX_MARKETS) {
+      throw new Error(`Yield Basis market_count too large: ${marketCount.toString()}`)
+    }
+    const marketCountNum = Number(marketCount)
+    let failedMarketDiscoveries = 0
 
     const tbtcMarkets: { cryptopool: Address; amm: Address }[] = []
+    for (let i = 0; i < marketCountNum; i += MARKET_DISCOVERY_BATCH) {
+      const size = Math.min(MARKET_DISCOVERY_BATCH, marketCountNum - i)
+      const indexes = Array.from({ length: size }, (_, offset) => i + offset)
+      try {
+        const marketsResults = await client.multicall({
+          contracts: indexes.map(index => ({
+            address: checksummedFactory,
+            abi: FACTORY_ABI,
+            functionName: 'markets',
+            args: [BigInt(index)]
+          })),
+          allowFailure: true
+        })
 
-    for (const r of marketsResults) {
-      if (r.status !== 'success') continue
-      const market = r.result as unknown as MarketTuple
-      const [asset, cryptopool, amm] = market
-      if (getAddress(asset).toLowerCase() !== checksummedTbtc.toLowerCase()) {
-        continue
+        for (let idx = 0; idx < marketsResults.length; idx++) {
+          const r = marketsResults[idx]
+          if (r.status !== 'success') {
+            failedMarketDiscoveries++
+            continue
+          }
+          try {
+            const market = r.result as unknown as MarketTuple
+            const [asset, cryptopool, amm] = market
+            if (getAddress(asset).toLowerCase() !== checksummedTbtc.toLowerCase()) {
+              continue
+            }
+            tbtcMarkets.push({
+              cryptopool: getAddress(cryptopool),
+              amm: getAddress(amm)
+            })
+          } catch {
+            failedMarketDiscoveries++
+          }
+        }
+      } catch (error) {
+        this.logger.warn(
+          { chain, error: error instanceof Error ? error.message : String(error), batchSize: size },
+          'Yield Basis market discovery multicall failed; falling back to sequential reads'
+        )
+        for (const index of indexes) {
+          try {
+            const market = await client.readContract({
+              address: checksummedFactory,
+              abi: FACTORY_ABI,
+              functionName: 'markets',
+              args: [BigInt(index)]
+            }) as unknown as MarketTuple
+            const [asset, cryptopool, amm] = market
+            if (getAddress(asset).toLowerCase() !== checksummedTbtc.toLowerCase()) {
+              continue
+            }
+            tbtcMarkets.push({
+              cryptopool: getAddress(cryptopool),
+              amm: getAddress(amm)
+            })
+          } catch {
+            failedMarketDiscoveries++
+          }
+        }
       }
-      tbtcMarkets.push({
-        cryptopool: getAddress(cryptopool),
-        amm: getAddress(amm)
-      })
+    }
+    if (failedMarketDiscoveries > 0) {
+      this.logger.warn({ chain, failedMarketDiscoveries }, 'Yield Basis market discovery had partial failures')
     }
 
     let totalTvl = 0n
@@ -142,7 +190,10 @@ export class YieldBasisExtractor extends BaseExtractor {
 
         const bal0 = reads[0]
         const bal1 = reads[1]
-        if (bal0.status !== 'success' || bal1.status !== 'success') continue
+        if (bal0.status !== 'success' || bal1.status !== 'success') {
+          this.logger.warn({ cryptopool }, 'Yield Basis market missing LP balance or totalSupply')
+          continue
+        }
 
         const ammLpBalance = bal0.result as bigint
         const lpTotalSupply = bal1.result as bigint
@@ -178,7 +229,7 @@ export class YieldBasisExtractor extends BaseExtractor {
       tvl: totalTvl,
       timestamp: new Date(),
       blockNumber: Number(blockNumber),
-      metadata: { source: this.source, endpoint: chainConfig.rpcUrl }
+      metadata: { source: this.source, endpoint: chainConfig.rpcUrl, endpoints: getConfiguredRpcEndpoints(chain) }
     }
   }
 }

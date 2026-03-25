@@ -6,7 +6,7 @@ Extracts TVL (Total Value Locked) data for tBTC across DeFi protocols and chains
 
 ```bash
 npm install
-cp .env.example .env  # Add your THEGRAPH_API_KEY
+cp .env.example .env  # Add your THEGRAPH_API_KEY and ALCHEMY_API_KEY
 ```
 
 ## Usage
@@ -29,4 +29,4 @@ Generates `data/output/tvl.json`:
 ## CI/CD
 
 GitHub Actions runs daily at 8am UTC, publishing to GitHub Pages.
-Requires `THEGRAPH_API_KEY` secret.
+Requires `THEGRAPH_API_KEY` and `ALCHEMY_API_KEY` secrets.
