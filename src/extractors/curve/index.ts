@@ -1,6 +1,6 @@
 import { BaseExtractor } from '../base.js'
 import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
-import { createPublicClient, http, parseAbi, getAddress, Chain as ViemChain } from 'viem'
+import { createPublicClient, parseAbi, getAddress, Chain as ViemChain } from 'viem'
 import { mainnet, base, arbitrum, optimism } from 'viem/chains'
 import {
   getCurvePoolsForChain,
@@ -8,11 +8,14 @@ import {
   CURVE_POOL_TYPES
 } from './config.js'
 import { TBTC_ADDRESSES } from '../../config/index.js'
-import { CHAIN_CONFIGS } from '../../config/chains.js'
+import { CHAIN_CONFIGS, createEvmHttpTransport } from '../../config/chains.js'
 
 const ERC20_ABI = parseAbi([
   'function balanceOf(address account) view returns (uint256)'
 ])
+
+/** Max balanceOf calls per multicall batch (RPC limits) */
+const MULTICALL_BATCH = 512
 
 interface CurveApiPool {
   id: string
@@ -133,26 +136,36 @@ export class CurveExtractor extends BaseExtractor {
 
     const client = createPublicClient({
       chain: this.getViemChain(chain),
-      transport: http(chainConfig.rpcUrl, {
-        timeout: this.options.timeout ?? 10000
-      })
+      transport: createEvmHttpTransport(chain, this.options.timeout ?? 10000)
     })
 
-    let totalTvl = 0n
+    const checksummedTbtc = getAddress(tbtcAddress)
+    const uniquePools = new Set<string>()
     for (const poolAddress of poolAddresses) {
       try {
-        const checksummedPool = getAddress(poolAddress)
-        const checksummedTbtc = getAddress(tbtcAddress)
+        uniquePools.add(getAddress(poolAddress))
+      } catch {
+        // invalid address
+      }
+    }
 
-        const balance = await client.readContract({
+    let totalTvl = 0n
+    const poolList = [...uniquePools]
+    for (let i = 0; i < poolList.length; i += MULTICALL_BATCH) {
+      const batch = poolList.slice(i, i + MULTICALL_BATCH)
+      const results = await client.multicall({
+        contracts: batch.map(pool => ({
           address: checksummedTbtc,
           abi: ERC20_ABI,
           functionName: 'balanceOf',
-          args: [checksummedPool]
-        })
-        totalTvl += balance
-      } catch {
-        // Skip pools that fail (e.g., broken pools)
+          args: [pool]
+        })),
+        allowFailure: true
+      })
+      for (const r of results) {
+        if (r.status === 'success') {
+          totalTvl += r.result as bigint
+        }
       }
     }
 
