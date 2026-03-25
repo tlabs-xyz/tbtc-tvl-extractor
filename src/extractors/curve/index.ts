@@ -8,7 +8,7 @@ import {
   CURVE_POOL_TYPES
 } from './config.js'
 import { TBTC_ADDRESSES } from '../../config/index.js'
-import { CHAIN_CONFIGS, createEvmHttpTransport } from '../../config/chains.js'
+import { CHAIN_CONFIGS, createEvmHttpTransport, getConfiguredRpcEndpoints } from '../../config/chains.js'
 
 const ERC20_ABI = parseAbi([
   'function balanceOf(address account) view returns (uint256)'
@@ -16,6 +16,14 @@ const ERC20_ABI = parseAbi([
 
 /** Max balanceOf calls per multicall batch (RPC limits) */
 const MULTICALL_BATCH = 512
+const VIEM_CHAINS: Record<Chain, ViemChain | undefined> = {
+  [Chain.ETHEREUM]: mainnet,
+  [Chain.BASE]: base,
+  [Chain.ARBITRUM]: arbitrum,
+  [Chain.OPTIMISM]: optimism,
+  [Chain.STARKNET]: undefined,
+  [Chain.SUI]: undefined
+}
 
 interface CurveApiPool {
   id: string
@@ -42,18 +50,11 @@ export class CurveExtractor extends BaseExtractor {
   }
 
   private getViemChain(chain: Chain): ViemChain {
-    switch (chain) {
-      case Chain.ETHEREUM:
-        return mainnet
-      case Chain.BASE:
-        return base
-      case Chain.ARBITRUM:
-        return arbitrum
-      case Chain.OPTIMISM:
-        return optimism
-      default:
-        throw new Error(`Unsupported chain for RPC: ${chain}`)
+    const viemChain = VIEM_CHAINS[chain]
+    if (!viemChain) {
+      throw new Error(`Unsupported chain for RPC: ${chain}`)
     }
+    return viemChain
   }
 
   /**
@@ -141,32 +142,63 @@ export class CurveExtractor extends BaseExtractor {
 
     const checksummedTbtc = getAddress(tbtcAddress)
     const uniquePools = new Set<string>()
+    let invalidPoolAddressCount = 0
     for (const poolAddress of poolAddresses) {
       try {
         uniquePools.add(getAddress(poolAddress))
       } catch {
-        // invalid address
+        invalidPoolAddressCount++
       }
     }
 
     let totalTvl = 0n
     const poolList = [...uniquePools]
+    let failedPoolQueries = 0
     for (let i = 0; i < poolList.length; i += MULTICALL_BATCH) {
       const batch = poolList.slice(i, i + MULTICALL_BATCH)
-      const results = await client.multicall({
-        contracts: batch.map(pool => ({
-          address: checksummedTbtc,
-          abi: ERC20_ABI,
-          functionName: 'balanceOf',
-          args: [pool]
-        })),
-        allowFailure: true
-      })
-      for (const r of results) {
-        if (r.status === 'success') {
-          totalTvl += r.result as bigint
+      try {
+        const results = await client.multicall({
+          contracts: batch.map(pool => ({
+            address: checksummedTbtc,
+            abi: ERC20_ABI,
+            functionName: 'balanceOf',
+            args: [pool]
+          })),
+          allowFailure: true
+        })
+        for (let j = 0; j < results.length; j++) {
+          const r = results[j]
+          if (r.status === 'success') {
+            totalTvl += r.result as bigint
+            continue
+          }
+          failedPoolQueries++
+        }
+      } catch (error) {
+        this.logger.warn(
+          { chain, error: error instanceof Error ? error.message : String(error), batchSize: batch.length },
+          'Curve multicall batch failed; falling back to sequential reads'
+        )
+        for (const pool of batch) {
+          try {
+            const balance = await client.readContract({
+              address: checksummedTbtc,
+              abi: ERC20_ABI,
+              functionName: 'balanceOf',
+              args: [pool as `0x${string}`]
+            })
+            totalTvl += balance
+          } catch {
+            failedPoolQueries++
+          }
         }
       }
+    }
+    if (invalidPoolAddressCount > 0 || failedPoolQueries > 0) {
+      this.logger.warn(
+        { chain, invalidPoolAddressCount, failedPoolQueries, totalPools: poolList.length },
+        'Curve extraction completed with partial failures'
+      )
     }
 
     const blockNumber = await client.getBlockNumber()
@@ -180,7 +212,8 @@ export class CurveExtractor extends BaseExtractor {
       metadata: {
         source: ExtractionSource.RPC,
         endpoint: chainConfig.rpcUrl,
-        poolCount: poolAddresses.length
+        endpoints: getConfiguredRpcEndpoints(chain),
+        poolCount: poolList.length
       }
     }
   }
