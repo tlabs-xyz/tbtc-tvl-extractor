@@ -11,6 +11,10 @@ export interface ExtractionMetadata {
   endpoint?: string
   endpoints?: string[]  // For protocols querying multiple subgraphs (e.g., Uniswap V3 + V4)
   poolCount?: number  // Number of pools queried (for RPC mode)
+  /** AlphaLend: tBTC in lending markets */
+  lendingTvl?: string
+  /** AlphaLend: tBTC in spot pools */
+  spotTvl?: string
 }
 
 export interface ExtractionResult {

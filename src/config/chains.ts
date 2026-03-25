@@ -1,10 +1,31 @@
+import { fallback, http, type Transport } from 'viem'
+
 import { Chain } from '../types/index.js'
 
 export interface ChainConfig {
   name: string
   chainId: number
   rpcUrl: string
+  /** Secondary public RPC used when primary is rate-limited (CI / shared endpoints) */
+  fallbackRpcUrl?: string
   isEVM: boolean
+}
+
+/**
+ * HTTP transport with optional fallback for EVM chains (reduces CI flakiness).
+ */
+export function createEvmHttpTransport(chain: Chain, timeoutMs?: number): Transport {
+  const config = CHAIN_CONFIGS[chain]
+  if (!config.isEVM) {
+    throw new Error(`Not an EVM chain: ${chain}`)
+  }
+  const t = timeoutMs ?? 10000
+  const opts = { timeout: t }
+  const primary = http(config.rpcUrl, opts)
+  if (config.fallbackRpcUrl) {
+    return fallback([primary, http(config.fallbackRpcUrl, opts)])
+  }
+  return primary
 }
 
 export const CHAIN_CONFIGS: Record<Chain, ChainConfig> = {
@@ -12,6 +33,7 @@ export const CHAIN_CONFIGS: Record<Chain, ChainConfig> = {
     name: 'Ethereum',
     chainId: 1,
     rpcUrl: process.env.ETHEREUM_RPC || 'https://eth.llamarpc.com',
+    fallbackRpcUrl: 'https://ethereum-rpc.publicnode.com',
     isEVM: true
   },
   [Chain.ARBITRUM]: {

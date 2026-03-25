@@ -1,9 +1,9 @@
 import { BaseExtractor } from '../base.js'
 import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
-import { createPublicClient, http, parseAbi, getAddress } from 'viem'
+import { createPublicClient, parseAbi, getAddress, type Address } from 'viem'
 import { mainnet } from 'viem/chains'
 import { TBTC_ADDRESSES } from '../../config/index.js'
-import { CHAIN_CONFIGS } from '../../config/chains.js'
+import { CHAIN_CONFIGS, createEvmHttpTransport } from '../../config/chains.js'
 import { YIELD_BASIS_FACTORY } from './config.js'
 
 const FACTORY_ABI = parseAbi([
@@ -20,6 +20,8 @@ const ERC20_ABI = parseAbi([
   'function balanceOf(address account) view returns (uint256)',
   'function totalSupply() view returns (uint256)'
 ])
+
+type MarketTuple = readonly [Address, Address, Address, Address, bigint, bigint]
 
 export class YieldBasisExtractor extends BaseExtractor {
   readonly protocolName = 'Yield Basis'
@@ -44,7 +46,7 @@ export class YieldBasisExtractor extends BaseExtractor {
 
     const client = createPublicClient({
       chain: mainnet,
-      transport: http(chainConfig.rpcUrl, { timeout: this.options.timeout ?? 10000 })
+      transport: createEvmHttpTransport(chain, this.options.timeout ?? 10000)
     })
 
     const checksummedFactory = getAddress(factoryAddress)
@@ -56,64 +58,115 @@ export class YieldBasisExtractor extends BaseExtractor {
       functionName: 'market_count'
     })
 
+    const marketsResults = await client.multicall({
+      contracts: Array.from({ length: Number(marketCount) }, (_, i) => ({
+        address: checksummedFactory,
+        abi: FACTORY_ABI,
+        functionName: 'markets',
+        args: [BigInt(i)]
+      })),
+      allowFailure: true
+    })
+
+    const tbtcMarkets: { cryptopool: Address; amm: Address }[] = []
+
+    for (const r of marketsResults) {
+      if (r.status !== 'success') continue
+      const market = r.result as unknown as MarketTuple
+      const [asset, cryptopool, amm] = market
+      if (getAddress(asset).toLowerCase() !== checksummedTbtc.toLowerCase()) {
+        continue
+      }
+      tbtcMarkets.push({
+        cryptopool: getAddress(cryptopool),
+        amm: getAddress(amm)
+      })
+    }
+
     let totalTvl = 0n
 
-    for (let i = 0n; i < marketCount; i++) {
+    for (const { cryptopool, amm } of tbtcMarkets) {
       try {
-        const market = await client.readContract({
-          address: checksummedFactory,
-          abi: FACTORY_ABI,
-          functionName: 'markets',
-          args: [i]
+        const reads = await client.multicall({
+          contracts: [
+            {
+              address: cryptopool,
+              abi: ERC20_ABI,
+              functionName: 'balanceOf',
+              args: [amm]
+            },
+            {
+              address: cryptopool,
+              abi: ERC20_ABI,
+              functionName: 'totalSupply'
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'coins',
+              args: [0n]
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'coins',
+              args: [1n]
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'coins',
+              args: [2n]
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'balances',
+              args: [0n]
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'balances',
+              args: [1n]
+            },
+            {
+              address: cryptopool,
+              abi: CRYPTOPOOL_ABI,
+              functionName: 'balances',
+              args: [2n]
+            }
+          ],
+          allowFailure: true
         })
 
-        const [asset, cryptopool, amm] = market
-        if (getAddress(asset).toLowerCase() !== checksummedTbtc.toLowerCase()) {
-          continue
-        }
+        const bal0 = reads[0]
+        const bal1 = reads[1]
+        if (bal0.status !== 'success' || bal1.status !== 'success') continue
 
-        const checksummedCryptopool = getAddress(cryptopool)
-        const checksummedAmm = getAddress(amm)
-
-        const ammLpBalance = await client.readContract({
-          address: checksummedCryptopool,
-          abi: ERC20_ABI,
-          functionName: 'balanceOf',
-          args: [checksummedAmm]
-        })
-
-        const lpTotalSupply = await client.readContract({
-          address: checksummedCryptopool,
-          abi: ERC20_ABI,
-          functionName: 'totalSupply'
-        })
+        const ammLpBalance = bal0.result as bigint
+        const lpTotalSupply = bal1.result as bigint
 
         if (lpTotalSupply === 0n || ammLpBalance === 0n) continue
 
         let tbtcPoolBalance = 0n
         for (let coinIdx = 0; coinIdx < 3; coinIdx++) {
-          try {
-            const coinAddress = await client.readContract({
-              address: checksummedCryptopool,
-              abi: CRYPTOPOOL_ABI,
-              functionName: 'coins',
-              args: [BigInt(coinIdx)]
-            })
-            if (getAddress(coinAddress).toLowerCase() === checksummedTbtc.toLowerCase()) {
-              tbtcPoolBalance = await client.readContract({
-                address: checksummedCryptopool,
-                abi: CRYPTOPOOL_ABI,
-                functionName: 'balances',
-                args: [BigInt(coinIdx)]
-              })
-              break
-            }
-          } catch { break }
+          const coinR = reads[2 + coinIdx]
+          const balR = reads[5 + coinIdx]
+          if (coinR.status !== 'success' || balR.status !== 'success') continue
+          const coinAddress = coinR.result as Address
+          if (getAddress(coinAddress).toLowerCase() === checksummedTbtc.toLowerCase()) {
+            tbtcPoolBalance = balR.result as bigint
+            break
+          }
         }
 
         totalTvl += (ammLpBalance * tbtcPoolBalance) / lpTotalSupply
       } catch (error) {
-        this.logger.warn({ marketIndex: i.toString(), error: error instanceof Error ? error.message : String(error) }, 'Failed to process market')
+        this.logger.warn(
+          { cryptopool, error: error instanceof Error ? error.message : String(error) },
+          'Failed to process Yield Basis market'
+        )
       }
     }
 
