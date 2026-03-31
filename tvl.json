@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "2080.676640947968407063"
+    "tvl": "2088.931226538060039958"
   },
   {
     "protocol": "Asymmetry",
@@ -47,12 +47,12 @@
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "20.633219259615402401"
+    "tvl": "20.625808696532462227"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "8.671433470670868511"
+    "tvl": "8.671436278262428704"
   },
   {
     "protocol": "Nerite",
@@ -62,52 +62,52 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "8.190981484099956149"
+    "tvl": "8.261529543727157587"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "10.626818580387855255"
+    "tvl": "10.635366980526893403"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.720488973635022204"
+    "tvl": "6.980928719146037889"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "0"
+    "tvl": "4.856216218265190677"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.270384309434054834"
+    "tvl": "1.270479309434054834"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.272938942002079401"
+    "tvl": "0.193540738871001736"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "4.161415673497787425"
+    "tvl": "4.159222899870672884"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "32.235009206659553609"
+    "tvl": "34.240058746303874035"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "19.138704789788810209"
+    "tvl": "17.138027509961267764"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "25.610605544854264937"
+    "tvl": "25.610605267998982275"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "52.09632518"
+    "tvl": "51.98799976"
   },
   {
     "protocol": "Bluefin",
