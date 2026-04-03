@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "2116.213373354679836818"
+    "tvl": "2116.88260386740650362"
   },
   {
     "protocol": "Asymmetry",
@@ -12,7 +12,7 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "425.114234644960819131"
+    "tvl": "425.128184372527773147"
   },
   {
     "protocol": "Curve",
@@ -52,7 +52,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "9.119278489257795077"
+    "tvl": "9.069378240028191917"
   },
   {
     "protocol": "Nerite",
@@ -62,52 +62,52 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "8.646907636191403797"
+    "tvl": "8.085372460927413969"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "10.489361901542432524"
+    "tvl": "10.489449089012177977"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "8.038542182010201438"
+    "tvl": "7.634676162940106519"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "5.198911716301616091"
+    "tvl": "5.174804251079787343"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.290857239871722159"
+    "tvl": "1.320289973651137763"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.060026302133636904"
+    "tvl": "0.082247876848751397"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "4.210784828156978282"
+    "tvl": "4.390232520284482889"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "42.239173021445015073"
+    "tvl": "42.149548662588060228"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "16.559855234989286406"
+    "tvl": "16.560906704437714304"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "25.610604689006397525"
+    "tvl": "26.425879213475679334"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "51.0096142"
+    "tvl": "52.31180446"
   },
   {
     "protocol": "Bluefin",
