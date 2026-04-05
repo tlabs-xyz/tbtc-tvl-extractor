@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "2162.885677978476390786"
+    "tvl": "2174.557372829470880386"
   },
   {
     "protocol": "Asymmetry",
@@ -12,7 +12,7 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "425.486133506690852818"
+    "tvl": "425.577512817219100045"
   },
   {
     "protocol": "Curve",
@@ -47,12 +47,12 @@
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "20.435485288096121558"
+    "tvl": "24.438209097044643995"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "9.069378240028191917"
+    "tvl": "9.069364590603387464"
   },
   {
     "protocol": "Nerite",
@@ -62,7 +62,7 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "7.871903894800096919"
+    "tvl": "7.896828098001368833"
   },
   {
     "protocol": "Aave",
@@ -72,7 +72,7 @@
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.855702528821954983"
+    "tvl": "2.689844657961098301"
   },
   {
     "protocol": "Curve",
@@ -82,32 +82,32 @@
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.320289973651137763"
+    "tvl": "1.314154415290889078"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.136414012925323983"
+    "tvl": "0.317690196381027753"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "4.398168695080871482"
+    "tvl": "4.417369317660994302"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "42.141458202333624618"
+    "tvl": "42.140005683906818107"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "16.565794252167833803"
+    "tvl": "16.566680092711940295"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "26.428125296811930381"
+    "tvl": "26.428558175449905953"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "52.36836148"
+    "tvl": "52.43383491"
   },
   {
     "protocol": "Bluefin",
