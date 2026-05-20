@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1892.05689690073383785"
+    "tvl": "1893.10856710473471352"
   },
   {
     "protocol": "Asymmetry",
@@ -47,12 +47,12 @@
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "21.047271536024686308"
+    "tvl": "21.045391553083110893"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "7.314326203032569953"
+    "tvl": "6.998745557385077739"
   },
   {
     "protocol": "Nerite",
@@ -62,22 +62,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "7.173766728092164201"
+    "tvl": "6.809448622522065754"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "5.335024833382369363"
+    "tvl": "5.124992343272397966"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.716787333636074136"
+    "tvl": "6.32416311243403104"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "4.917046806355475649"
+    "tvl": "0"
   },
   {
     "protocol": "Curve",
@@ -87,27 +87,27 @@
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.238681841359246545"
+    "tvl": "0.03260769730827815"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "4.726496396784647134"
+    "tvl": "4.159409125222632217"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "28.820629865092864082"
+    "tvl": "27.588296347084510359"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "5.205520860164314783"
+    "tvl": "5.203238879960210988"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "14.345622330689501702"
+    "tvl": "14.477590021860836859"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "46.84517932"
+    "tvl": "48.04273059"
   },
   {
     "protocol": "Bluefin",
@@ -137,6 +137,6 @@
   {
     "protocol": "Ember",
     "chain": "Sui",
-    "tvl": "13.68046679"
+    "tvl": "13.68349235"
   }
 ]
