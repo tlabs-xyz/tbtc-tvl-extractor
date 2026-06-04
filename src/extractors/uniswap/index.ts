@@ -42,7 +42,8 @@ export class UniswapExtractor extends BaseExtractor {
       throw new Error(`Uniswap not configured for chain: ${chain}`)
     }
 
-    // Step 1: Discover V3 pools from subgraph
+    // Step 1: Discover V3 pools from subgraph. If discovery is unavailable,
+    // keep going so V4 PoolManager TVL can still be published.
     const v3PoolAddresses = await this.discoverV3Pools(chain, tbtcAddress)
 
     // Step 2: Get on-chain balances via RPC
@@ -136,12 +137,12 @@ export class UniswapExtractor extends BaseExtractor {
   }
 
   private async discoverV3Pools(chain: Chain, tbtcAddress: string): Promise<string[]> {
-    const v3Endpoint = getUniswapV3Endpoint(chain)
-    if (!v3Endpoint) {
-      throw new Error(`Uniswap V3 endpoint not configured for chain: ${chain}`)
-    }
-
     try {
+      const v3Endpoint = getUniswapV3Endpoint(chain)
+      if (!v3Endpoint) {
+        throw new Error(`Uniswap V3 endpoint not configured for chain: ${chain}`)
+      }
+
       const client = new GraphQLClient(v3Endpoint)
 
       const rawResponse = await client.request(
@@ -164,7 +165,11 @@ export class UniswapExtractor extends BaseExtractor {
       }
       return addresses
     } catch (error) {
-      throw new Error(`Failed to query V3 subgraph for pools on ${chain}: ${error instanceof Error ? error.message : String(error)}`)
+      this.logger.warn(
+        { chain, error: error instanceof Error ? error.message : String(error) },
+        'Failed to discover Uniswap V3 pools; continuing with V4 PoolManager only'
+      )
+      return []
     }
   }
 }
