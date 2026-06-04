@@ -24,7 +24,7 @@
     "protocol": "Curve",
     "category": "DEX",
     "chain": "Ethereum",
-    "url": "https://www.curve.finance/dex/ethereum/pools/?search=tbtc",
+    "url": "https://www.curve.finance/dex/ethereum/pools?search=tbtc",
     "tvl": 0
   },
   {
@@ -57,9 +57,9 @@
   },
   {
     "protocol": "Yield Basis",
-    "category": "Vault",
+    "category": "DEX",
     "chain": "Ethereum",
-    "url": "https://yieldbasis.com/earn/0xaC0a340C1644321D0BBc6404946d828c1EBfAC92",
+    "url": "https://yieldbasis.com/earn/0x771F7290428d830ECd41E980745c327e507823Ec",
     "tvl": 0
   },
   {
@@ -112,31 +112,10 @@
     "tvl": 0
   },
   {
-    "protocol": "Curve",
-    "category": "DEX",
-    "chain": "Optimism",
-    "url": "https://www.curve.finance/dex/optimism/pools/?search=tbtc",
-    "tvl": 0
-  },
-  {
-    "protocol": "Uniswap",
-    "category": "DEX",
-    "chain": "Optimism",
-    "url": "https://app.uniswap.org/explore/tokens/optimism/0x6c84a8f1c29108f47a79964b5fe888d4f4d0de40?inputCurrency=NATIVE",
-    "tvl": 0
-  },
-  {
-    "protocol": "Velodrome",
-    "category": "DEX",
-    "chain": "Optimism",
-    "url": "https://velodrome.finance/liquidity?query=tbtc",
-    "tvl": 0
-  },
-  {
     "protocol": "Ekubo",
     "category": "DEX",
     "chain": "Starknet",
-    "url": "https://app.ekubo.org/charts/tBTC/WBTC?",
+    "url": "https://ekubo.org/charts/0x534e5f4d41494e/0x4daa17763b286d1e59b97c283c0b8c949994c361e426a28f743c67bdfe9a32f/0x787150e306e6eae6e3f79dea881770e8bbff2c1b8eb490f969669ee945b3135",
     "tvl": 0
   },
   {
