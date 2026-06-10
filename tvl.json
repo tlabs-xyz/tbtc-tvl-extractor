@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1921.049094030632943114"
+    "tvl": "1916.310344087886309661"
   },
   {
     "protocol": "Asymmetry",
@@ -47,12 +47,12 @@
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "20.311537170200379954"
+    "tvl": "20.312370304958528337"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "7.889235392588621623"
+    "tvl": "8.660934025146031506"
   },
   {
     "protocol": "Nerite",
@@ -62,17 +62,17 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "7.413910057204453758"
+    "tvl": "8.159382529670976656"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "6.231289210277348348"
+    "tvl": "6.231293397931332976"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "2.850215785576729784"
+    "tvl": "7.111653918278717706"
   },
   {
     "protocol": "Curve",
@@ -82,32 +82,32 @@
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.0711823582793116"
+    "tvl": "1.079906175336655942"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.382372982085679376"
+    "tvl": "0.392239113510781205"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "5.431000052345996565"
+    "tvl": "5.512918627056749224"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "40.632978215415877696"
+    "tvl": "41.502523365706667492"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "5.366352490563150195"
+    "tvl": "5.366723515436212834"
   },
   {
     "protocol": "Vesu",
     "chain": "Starknet",
-    "tvl": "15.055114331829467029"
+    "tvl": "15.148501932334211691"
   },
   {
     "protocol": "Starknet Earn",
@@ -122,7 +122,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "47.70038161"
+    "tvl": "48.01854542"
   },
   {
     "protocol": "Bluefin",
@@ -137,6 +137,6 @@
   {
     "protocol": "Ember",
     "chain": "Sui",
-    "tvl": "11.82704241"
+    "tvl": "11.82792586"
   }
 ]
