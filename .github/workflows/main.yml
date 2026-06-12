@@ -31,8 +31,9 @@ jobs:
           THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
           # Safety net when no Alchemy key is configured: the default public
-          # Ethereum RPC (eth.llamarpc.com) has proven unreliable.
-          ETHEREUM_FALLBACK_RPC: https://ethereum-rpc.publicnode.com
+          # Ethereum RPC (eth.llamarpc.com) has proven unreliable. Override
+          # via the ETHEREUM_FALLBACK_RPC repo variable without a commit.
+          ETHEREUM_FALLBACK_RPC: ${{ vars.ETHEREUM_FALLBACK_RPC || 'https://ethereum-rpc.publicnode.com' }}
 
       - name: Verify output exists
         run: ls -la ./data/output/
