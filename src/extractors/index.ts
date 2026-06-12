@@ -14,6 +14,7 @@ import { EndurExtractor } from './endur/index.js'
 import { EkuboExtractor } from './ekubo/index.js'
 import { AlphaLendExtractor } from './alphalend/index.js'
 import { EmberExtractor } from './ember/index.js'
+import { MorphoExtractor } from './morpho/index.js'
 import { Chain, ExtractorOptions } from '../types/index.js'
 import { Logger } from '../utils/index.js'
 
@@ -38,7 +39,8 @@ export function createExtractors(
     new EndurExtractor(logger, options),
     new EkuboExtractor(logger, options),
     new AlphaLendExtractor(logger, options),
-    new EmberExtractor(logger, options)
+    new EmberExtractor(logger, options),
+    new MorphoExtractor(logger, options)
   ]
 }
 
