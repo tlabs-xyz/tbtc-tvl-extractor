@@ -30,8 +30,12 @@ export class MorphoExtractor extends BaseExtractor {
     if (!morphoAddress) {
       throw new Error(`Morpho Blue not configured for chain: ${chain}`)
     }
+    if (!tbtcAddress) {
+      throw new Error(`tBTC not configured for chain: ${chain}`)
+    }
 
     const client = createPublicClient({
+      // All current Morpho markets tracked here are on Ethereum mainnet.
       chain: mainnet,
       transport: createEvmHttpTransport(chain, this.options.timeout ?? 10000)
     })
@@ -51,6 +55,8 @@ export class MorphoExtractor extends BaseExtractor {
       tvl: totalTvl,
       timestamp: new Date(),
       blockNumber: Number(blockNumber),
+      // endpoint reflects the configured primary; the fallback transport may
+      // have served the request from fallbackRpcUrl (see endpoints).
       metadata: { source: this.source, endpoint: chainConfig.rpcUrl, endpoints: getConfiguredRpcEndpoints(chain) }
     }
   }

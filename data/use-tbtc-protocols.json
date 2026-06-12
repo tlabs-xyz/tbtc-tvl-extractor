@@ -45,7 +45,7 @@
     "protocol": "Morpho",
     "category": "Lending",
     "chain": "Ethereum",
-    "url": "https://app.morpho.org/ethereum/market/0xe4cfbee9af4ad713b41bf79f009ca02b17c001a0c0e7bd2e6a89b1111b3d3f08/tbtc-usdc",
+    "url": "https://app.morpho.org/ethereum",
     "tvl": 0
   },
   {
