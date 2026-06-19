@@ -42,8 +42,11 @@ export class UniswapExtractor extends BaseExtractor {
       throw new Error(`Uniswap not configured for chain: ${chain}`)
     }
 
-    // Step 1: Discover V3 pools from subgraph
-    const v3PoolAddresses = await this.discoverV3Pools(chain, tbtcAddress)
+    // Step 1: Discover V3 pools from subgraph. Transient subgraph failures are
+    // non-fatal so V4 PoolManager TVL can still be published; configuration
+    // errors (missing API key / unsupported chain) still throw.
+    const { pools: v3PoolAddresses, discoveryFailed: v3DiscoveryFailed } =
+      await this.discoverV3Pools(chain, tbtcAddress)
 
     // Step 2: Get on-chain balances via RPC
     const client = createPublicClient({
@@ -104,6 +107,7 @@ export class UniswapExtractor extends BaseExtractor {
 
     // Get V4 PoolManager balance (singleton contract holds all V4 liquidity)
     const v4PoolManager = UNISWAP_V4_POOL_MANAGER[chain]
+    let v4ReadFailed = false
     if (v4PoolManager) {
       try {
         const v4Balance = await client.readContract({
@@ -114,8 +118,18 @@ export class UniswapExtractor extends BaseExtractor {
         })
         totalTvl += v4Balance
       } catch (error) {
+        v4ReadFailed = true
         this.logger.warn({ chain, error: error instanceof Error ? error.message : String(error) }, 'Failed to query V4 PoolManager')
       }
+    }
+
+    // If every data source we attempted failed, surface as extraction failure
+    // rather than publishing tvl: 0 as a successful result.
+    if (v4ReadFailed && (v3DiscoveryFailed || v3PoolAddresses.length === 0)) {
+      throw new Error(
+        `Uniswap extraction produced no data for ${chain}: ` +
+          `V3 discovery ${v3DiscoveryFailed ? 'failed' : 'returned no pools'} and V4 PoolManager read failed`
+      )
     }
 
     const blockNumber = await client.getBlockNumber()
@@ -135,15 +149,20 @@ export class UniswapExtractor extends BaseExtractor {
     }
   }
 
-  private async discoverV3Pools(chain: Chain, tbtcAddress: string): Promise<string[]> {
+  private async discoverV3Pools(
+    chain: Chain,
+    tbtcAddress: string
+  ): Promise<{ pools: string[]; discoveryFailed: boolean }> {
+    // Configuration errors (missing API key / unsupported chain) are kept
+    // outside the try so they propagate instead of being silently degraded.
     const v3Endpoint = getUniswapV3Endpoint(chain)
     if (!v3Endpoint) {
       throw new Error(`Uniswap V3 endpoint not configured for chain: ${chain}`)
     }
 
-    try {
-      const client = new GraphQLClient(v3Endpoint)
+    const client = new GraphQLClient(v3Endpoint)
 
+    try {
       const rawResponse = await client.request(
         GetTBTCPoolsQuery,
         { token: tbtcAddress.toLowerCase() }
@@ -162,9 +181,13 @@ export class UniswapExtractor extends BaseExtractor {
       if (invalidCount > 0) {
         this.logger.warn({ chain, invalidCount }, 'Uniswap V3 subgraph returned invalid pool addresses')
       }
-      return addresses
+      return { pools: addresses, discoveryFailed: false }
     } catch (error) {
-      throw new Error(`Failed to query V3 subgraph for pools on ${chain}: ${error instanceof Error ? error.message : String(error)}`)
+      this.logger.warn(
+        { chain, error: error instanceof Error ? error.message : String(error) },
+        'Failed to discover Uniswap V3 pools; continuing with V4 PoolManager only'
+      )
+      return { pools: [], discoveryFailed: true }
     }
   }
 }
