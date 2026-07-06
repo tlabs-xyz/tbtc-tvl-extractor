@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "2006.069694729757895068"
+    "tvl": "2012.483638282759569172"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "559.75816724558203927"
+    "tvl": "559.98636083125808661"
   },
   {
     "protocol": "Gearbox",
@@ -42,22 +42,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "53.542595875555934682"
+    "tvl": "54.752134323946117866"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "388.135660026789630119"
+    "tvl": "384.939491420615153114"
   },
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "21.368188189242925982"
+    "tvl": "21.368230874080186821"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "8.900345584094049515"
+    "tvl": "9.217700076271682275"
   },
   {
     "protocol": "Nerite",
@@ -67,47 +67,47 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "6.034108118676448103"
+    "tvl": "5.800809935407243124"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "6.622656798397117298"
+    "tvl": "6.622519071612396221"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.462539442533595101"
+    "tvl": "6.306047442025795256"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "6.015996555193521636"
+    "tvl": "6.641972449070781764"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.114664298131203645"
+    "tvl": "1.121362728341970008"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.425257090572627"
+    "tvl": "0.431090555544202852"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "3.364590337270057664"
+    "tvl": "3.38669351171054993"
   },
   {
     "protocol": "Ekubo",
     "chain": "Starknet",
-    "tvl": "15.400449451409842739"
+    "tvl": "13.599985150025386474"
   },
   {
     "protocol": "Endur",
     "chain": "Starknet",
-    "tvl": "5.336134714320288812"
+    "tvl": "5.334424291824386436"
   },
   {
     "protocol": "Vesu",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "48.41298127"
+    "tvl": "48.40759234"
   },
   {
     "protocol": "Bluefin",
