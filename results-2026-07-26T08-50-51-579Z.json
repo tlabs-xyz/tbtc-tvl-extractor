@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "timestamp": "2026-07-26T08:50:51.578Z",
+    "version": "1.0.0",
+    "runId": "8ad37408-dd54-4acc-b87d-28f66e8174b8"
+  },
+  "chains": {
+    "ethereum": {
+      "totalTvl": "3056016787996224070151",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "2019500576789683940054",
+          "timestamp": "2026-07-26T08:48:55.904Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Compound",
+          "tvl": "102986284364019519951",
+          "timestamp": "2026-07-26T08:49:06.241Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Curve",
+          "tvl": "497221655777354914879",
+          "timestamp": "2026-07-26T08:49:09.435Z",
+          "blockNumber": 25615874,
+          "source": "rpc"
+        },
+        {
+          "name": "Gearbox",
+          "tvl": "502891428200127507",
+          "timestamp": "2026-07-26T08:49:09.586Z",
+          "blockNumber": 25615874,
+          "source": "rpc"
+        },
+        {
+          "name": "Morpho",
+          "tvl": "31555862644987663658",
+          "timestamp": "2026-07-26T08:49:09.733Z",
+          "blockNumber": 25615874,
+          "source": "rpc"
+        },
+        {
+          "name": "Spark Lend",
+          "tvl": "20851732053705238424",
+          "timestamp": "2026-07-26T08:49:09.847Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Uniswap",
+          "tvl": "56302572403121915846",
+          "timestamp": "2026-07-26T08:49:10.211Z",
+          "blockNumber": 25615874,
+          "source": "rpc"
+        },
+        {
+          "name": "Yield Basis",
+          "tvl": "327095212535150749832",
+          "timestamp": "2026-07-26T08:49:10.647Z",
+          "blockNumber": 25615874,
+          "source": "rpc"
+        }
+      ]
+    },
+    "arbitrum": {
+      "totalTvl": "22645647950346759976",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "22645647950346759976",
+          "timestamp": "2026-07-26T08:49:10.769Z",
+          "source": "subgraph"
+        }
+      ]
+    },
+    "base": {
+      "totalTvl": "6653917449972532190",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "6653917449972532190",
+          "timestamp": "2026-07-26T08:49:43.387Z",
+          "source": "subgraph"
+        }
+      ]
+    },
+    "starknet": {
+      "totalTvl": "39948932531130530919",
+      "protocols": [
+        {
+          "name": "Ekubo",
+          "tvl": "17236536297155674845",
+          "timestamp": "2026-07-26T08:50:49.239Z",
+          "blockNumber": 12315637,
+          "source": "rpc"
+        },
+        {
+          "name": "Endur",
+          "tvl": "5339907327846359392",
+          "timestamp": "2026-07-26T08:50:49.435Z",
+          "blockNumber": 12315637,
+          "source": "rpc"
+        },
+        {
+          "name": "Vesu",
+          "tvl": "17372488906128496682",
+          "timestamp": "2026-07-26T08:50:50.451Z",
+          "blockNumber": 12315637,
+          "source": "rpc"
+        }
+      ]
+    },
+    "sui": {
+      "totalTvl": "56420453070000000000",
+      "protocols": [
+        {
+          "name": "AlphaLend",
+          "tvl": "47872421330000000000",
+          "timestamp": "2026-07-26T08:50:51.086Z",
+          "source": "rpc"
+        },
+        {
+          "name": "Bucket",
+          "tvl": "5771320000000000",
+          "timestamp": "2026-07-26T08:50:51.145Z",
+          "source": "rpc"
+        },
+        {
+          "name": "Ember",
+          "tvl": "8542260420000000000",
+          "timestamp": "2026-07-26T08:50:51.577Z",
+          "source": "api"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalTvl": "3181685738997673893236",
+    "successRate": 1,
+    "protocolCount": 14,
+    "chainCount": 5
+  },
+  "validationReport": {
+    "passed": true,
+    "warnings": [],
+    "errors": [],
+    "summary": {
+      "totalChecks": 32,
+      "passedChecks": 32,
+      "warningCount": 0,
+      "errorCount": 0
+    }
+  }
+}
