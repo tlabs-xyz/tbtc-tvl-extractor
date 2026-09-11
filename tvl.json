@@ -12,12 +12,12 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "86.318753698155514966"
+    "tvl": "86.369455717432808384"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "415.609720335828467688"
+    "tvl": "427.878418302008206722"
   },
   {
     "protocol": "Gearbox",
@@ -42,22 +42,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "62.778634195458652968"
+    "tvl": "40.553417984880305305"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "198.312387291545111175"
+    "tvl": "207.983879954355637254"
   },
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "21.57580837842845353"
+    "tvl": "21.559356818928208882"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "7.578163470900824182"
+    "tvl": "8.019057926414372464"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "4.642695711431075821"
+    "tvl": "4.911302398703912526"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "5.872309526954324075"
+    "tvl": "5.865109610196824367"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.756400262795856125"
+    "tvl": "6.684263127018104016"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "3.798132320511825136"
+    "tvl": "3.839542847953256088"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.003385796840546733"
+    "tvl": "1.016622182365440263"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.089565792638288334"
+    "tvl": "0.115229102357194654"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "1.427681262857928561"
+    "tvl": "1.645739977572290613"
   },
   {
     "protocol": "Ekubo",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "31.46264464"
+    "tvl": "30.48529566"
   },
   {
     "protocol": "Bluefin",
