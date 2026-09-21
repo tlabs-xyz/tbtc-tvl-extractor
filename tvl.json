@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1715.151598368743930155"
+    "tvl": "1707.784681856661215853"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "414.299229698725936924"
+    "tvl": "415.540949109347944234"
   },
   {
     "protocol": "Gearbox",
@@ -42,22 +42,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "48.333168442449462018"
+    "tvl": "50.462963366091502819"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "190.079694145754565491"
+    "tvl": "188.867149167165780599"
   },
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "22.643940987390648463"
+    "tvl": "22.620777302706324282"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "7.731681149271655456"
+    "tvl": "7.703996381565596944"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "4.871462839761948454"
+    "tvl": "5.385156549529022776"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "5.871893388327426372"
+    "tvl": "5.873320878568121845"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.233072576871755261"
+    "tvl": "6.183900736547388405"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "4.694300253876410534"
+    "tvl": "4.629522144823387834"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "0.987553178066062131"
+    "tvl": "1.001964309714584362"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.017403622270962433"
+    "tvl": "0.024540881984429541"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "2.048806324851398919"
+    "tvl": "2.228661766501125158"
   },
   {
     "protocol": "Ekubo",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "31.53866633"
+    "tvl": "6.48546534"
   },
   {
     "protocol": "Bluefin",
