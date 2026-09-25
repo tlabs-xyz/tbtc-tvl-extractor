@@ -2,8 +2,8 @@ name: Extract TVL Data
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # Daily at 8am UTC
-  workflow_dispatch:      # Manual trigger
+    - cron: '0 8 * * *' # Daily at 8am UTC
+  workflow_dispatch: # Manual trigger
 
 permissions:
   contents: write
@@ -25,11 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate extractor
+        run: npm test && npx tsc --noEmit
+
       - name: Run extraction
         run: npm run extract
         env:
           THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          STARKNET_RPC: ${{ vars.STARKNET_RPC || 'https://api.cartridge.gg/x/starknet/mainnet' }}
           # Safety net when no Alchemy key is configured: the default public
           # Ethereum RPC (eth.llamarpc.com) has proven unreliable. Override
           # via the ETHEREUM_FALLBACK_RPC repo variable without a commit.
