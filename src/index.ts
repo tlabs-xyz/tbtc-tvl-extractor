@@ -10,6 +10,7 @@ import { aggregateResults } from './aggregator/index.js'
 import { Validator } from './validators/index.js'
 import { Chain, ExtractionResult } from './types/index.js'
 import { formatUnits } from 'viem'
+import { buildTvlFeed, type ExtractionAttempt } from './utils/tvl-feed.js'
 
 interface ProtocolEntry {
   protocol: string
@@ -17,15 +18,6 @@ interface ProtocolEntry {
   chain: string
   url: string
   tvl: number
-}
-
-interface ExtractionAttempt {
-  protocol: string
-  chain: string
-  category: string
-  tvl: string | 'NOT_IMPL' | 'FAILED' | 'SKIPPED'
-  tvlRaw?: bigint
-  skipReason?: string
 }
 
 // Protocols to skip with reasons (not indexable via subgraphs/RPC)
@@ -46,7 +38,7 @@ const SKIP_PROTOCOLS: Record<string, Record<string, string>> = {
     'Starknet': 'Vesu vault wrapper, TVL counted in Vesu'
   },
   'Bluefin': {
-    'Sui': 'Spot pools covered under AlphaLend (same protocol)'
+    'Sui': 'DEX liquidity is tracked separately from AlphaLend lending; extractor not implemented'
   }
 }
 
@@ -239,7 +231,8 @@ async function main() {
           chain: entry.chain,
           category: entry.category,
           tvl: formatUnits(result.tvl, 18),
-          tvlRaw: result.tvl
+          tvlRaw: result.tvl,
+          updatedAt: result.timestamp.toISOString()
         })
       } catch (error) {
         logger.error({
@@ -298,13 +291,7 @@ async function main() {
 
     // Write simple tvl.json (same format as input, with TVL populated)
     // Use -1 to indicate: failed extraction (after retries), not implemented, or skipped
-    const tvlOutput = attempts.map(a => ({
-      protocol: a.protocol,
-      chain: a.chain,
-      tvl: a.tvl === 'FAILED' || a.tvl === 'NOT_IMPL' || a.tvl === 'SKIPPED'
-        ? '-1'
-        : a.tvlRaw ? formatUnits(a.tvlRaw, 18) : '0'
-    }))
+    const tvlOutput = buildTvlFeed(attempts)
     await mkdir(config.outputDir, { recursive: true })
     const tvlPath = join(config.outputDir, 'tvl.json')
     await writeFile(tvlPath, JSON.stringify(tvlOutput, null, 2), 'utf-8')
