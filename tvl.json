@@ -12,12 +12,12 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "86.711539358525294527"
+    "tvl": "86.696057755848149963"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "404.807601158767167142"
+    "tvl": "404.233575833905847721"
   },
   {
     "protocol": "Gearbox",
@@ -32,7 +32,7 @@
   {
     "protocol": "Morpho",
     "chain": "Ethereum",
-    "tvl": "27.288158663250914621"
+    "tvl": "27.448139995076419826"
   },
   {
     "protocol": "Spark/Maker",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "47.987019269543918214"
+    "tvl": "49.863832055383140858"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "172.095638448833389674"
+    "tvl": "171.62476766829753875"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "8.084055299504727426"
+    "tvl": "8.284389556417203545"
   },
   {
     "protocol": "Nerite",
@@ -67,22 +67,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "4.85626536814045056"
+    "tvl": "5.281542927154714124"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "4.874560291214936188"
+    "tvl": "4.663211196914642107"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.881791800164651378"
+    "tvl": "6.683212749971397996"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "4.938361284987927476"
+    "tvl": "4.902015925400962833"
   },
   {
     "protocol": "Curve",
@@ -92,12 +92,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.096363729490131569"
+    "tvl": "0.094785920351743955"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "2.038825892164598484"
+    "tvl": "2.040369788774022302"
   },
   {
     "protocol": "Ekubo",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "7.06480471"
+    "tvl": "5.35698008"
   },
   {
     "protocol": "Bluefin",
