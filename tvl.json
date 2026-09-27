@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1717.281010157155853685"
+    "tvl": "1717.23554811879587045"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "404.233575833905847721"
+    "tvl": "405.440431659997970912"
   },
   {
     "protocol": "Gearbox",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "49.863832055383140858"
+    "tvl": "48.656135622575075457"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "171.62476766829753875"
+    "tvl": "171.611444434610016289"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "8.284389556417203545"
+    "tvl": "8.28439124087088678"
   },
   {
     "protocol": "Nerite",
@@ -67,22 +67,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "5.281542927154714124"
+    "tvl": "5.356145796553924984"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "4.663211196914642107"
+    "tvl": "4.653180399402261494"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.683212749971397996"
+    "tvl": "6.828410557418976614"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "4.902015925400962833"
+    "tvl": "4.896253316525257375"
   },
   {
     "protocol": "Curve",
@@ -92,12 +92,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.094785920351743955"
+    "tvl": "0.096395693633789905"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "2.040369788774022302"
+    "tvl": "2.038831828527624782"
   },
   {
     "protocol": "Ekubo",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "5.35698008"
+    "tvl": "4.61683202"
   },
   {
     "protocol": "Bluefin",
@@ -142,6 +142,6 @@
   {
     "protocol": "Ember",
     "chain": "Sui",
-    "tvl": "1.6190683"
+    "tvl": "1.51784847"
   }
 ]
