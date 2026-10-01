@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Run extraction
-        run: npm run extract
+        run: npm run extract | tee extract.log
         env:
           THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
@@ -42,6 +42,13 @@ jobs:
 
       - name: Verify output exists
         run: ls -la ./data/output/
+
+      # The run succeeds even when extractors fail, so surface each failure
+      # reason as a warning annotation (Actions masks secrets in them).
+      - name: Report extraction failures
+        run: |
+          jq -Rr 'fromjson? | select(.level == "warn" or .level == "error")
+            | "::warning title=\(.context // .protocol // "extract")::\(.error // .msg)"' extract.log | sort -u
 
       - name: Summarize TVL output
         run: echo "::notice title=tvl.json::$(jq -c 'map("\(.protocol)/\(.chain)=\(.tvl)")' ./data/output/tvl.json)"
