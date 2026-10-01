@@ -34,11 +34,22 @@ jobs:
           # Ethereum RPC (eth.llamarpc.com) has proven unreliable. Override
           # via the ETHEREUM_FALLBACK_RPC repo variable without a commit.
           ETHEREUM_FALLBACK_RPC: ${{ vars.ETHEREUM_FALLBACK_RPC || 'https://ethereum-rpc.publicnode.com' }}
+          # Ekubo, Endur and Vesu default to the public rpc.starknet.lava.build,
+          # which has failed every run since 2026-09-08. Use Alchemy's Starknet
+          # endpoint (spec v0_10, the starknet.js 9 default) and allow an
+          # override via the STARKNET_RPC repo variable without a commit.
+          STARKNET_RPC: ${{ vars.STARKNET_RPC || format('https://starknet-mainnet.g.alchemy.com/starknet/version/rpc/v0_10/{0}', secrets.ALCHEMY_API_KEY) }}
 
       - name: Verify output exists
         run: ls -la ./data/output/
 
+      - name: Summarize TVL output
+        run: echo "::notice title=tvl.json::$(jq -c 'map("\(.protocol)/\(.chain)=\(.tvl)")' ./data/output/tvl.json)"
+
+      # Only the default branch publishes, so a manual run on a branch can be
+      # used to check extraction without overwriting the production feed.
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
