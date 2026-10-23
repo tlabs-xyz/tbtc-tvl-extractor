@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1778.484521539182615965"
+    "tvl": "1778.37081108015015105"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "398.793562943593708983"
+    "tvl": "399.982833350309753535"
   },
   {
     "protocol": "Gearbox",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "25.155002062779372076"
+    "tvl": "12.171987344649451102"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "182.567634296144329082"
+    "tvl": "186.418995625548795722"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "3.506124575859266394"
+    "tvl": "3.550338000400791063"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "3.836202486338107693"
+    "tvl": "3.973029641022175364"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "4.052687633720716775"
+    "tvl": "3.947256086205344755"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "6.614141420522252022"
+    "tvl": "3.851233197474617565"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.894283252286114183"
+    "tvl": "2.892541554069074205"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "0.917352925055371129"
+    "tvl": "0.917322539328842869"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.011254435883459598"
+    "tvl": "0.011283457202612035"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "1.129467441237015304"
+    "tvl": "1.133788423183355647"
   },
   {
     "protocol": "Ekubo",
@@ -127,7 +127,7 @@
   {
     "protocol": "AlphaLend",
     "chain": "Sui",
-    "tvl": "2.2685114"
+    "tvl": "-1"
   },
   {
     "protocol": "Bluefin",
@@ -137,7 +137,7 @@
   {
     "protocol": "Bucket",
     "chain": "Sui",
-    "tvl": "0.00577132"
+    "tvl": "-1"
   },
   {
     "protocol": "Ember",
