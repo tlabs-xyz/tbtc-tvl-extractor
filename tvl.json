@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1778.37081108015015105"
+    "tvl": "1777.70522210913265936"
   },
   {
     "protocol": "Asymmetry",
@@ -12,12 +12,12 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "81.755130994408294223"
+    "tvl": "81.761230994408294223"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "399.982833350309753535"
+    "tvl": "399.742350463918694039"
   },
   {
     "protocol": "Gearbox",
@@ -42,22 +42,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "12.171987344649451102"
+    "tvl": "11.447474858282630355"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "186.418995625548795722"
+    "tvl": "187.505246649928189878"
   },
   {
     "protocol": "Aave",
     "chain": "Arbitrum",
-    "tvl": "9.584086526475298327"
+    "tvl": "9.182948312788746914"
   },
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "3.550338000400791063"
+    "tvl": "3.514361434088487678"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "3.973029641022175364"
+    "tvl": "3.745697223101544513"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "3.947256086205344755"
+    "tvl": "3.947076710161869092"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "3.851233197474617565"
+    "tvl": "3.309793521034840154"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.892541554069074205"
+    "tvl": "2.774300599922422581"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "0.917322539328842869"
+    "tvl": "0.932571760418285915"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.011283457202612035"
+    "tvl": "0.011343111678310418"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "1.133788423183355647"
+    "tvl": "1.148562788940295723"
   },
   {
     "protocol": "Ekubo",
