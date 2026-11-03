@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1748.536566526698022851"
+    "tvl": "1743.737818185287800862"
   },
   {
     "protocol": "Asymmetry",
@@ -12,12 +12,12 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "82.144566196377732139"
+    "tvl": "82.090977028897187377"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "490.089075117420751973"
+    "tvl": "487.753343293705970938"
   },
   {
     "protocol": "Gearbox",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "31.482236372253237463"
+    "tvl": "33.103734992448341216"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "217.993521875014779582"
+    "tvl": "214.449042877751234195"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "3.109323935265064799"
+    "tvl": "3.287359658875368366"
   },
   {
     "protocol": "Nerite",
@@ -67,7 +67,7 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "4.057576355974953583"
+    "tvl": "4.5732069434593499"
   },
   {
     "protocol": "Aave",
@@ -77,27 +77,27 @@
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "3.10005925285860328"
+    "tvl": "3.233649502314262748"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "2.874099304587125919"
+    "tvl": "2.974037557515206077"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "0.904774704779997124"
+    "tvl": "0.911804858983147629"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.036688840458422234"
+    "tvl": "0.160577317422101798"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "0.995868287335183977"
+    "tvl": "0.864729468987280959"
   },
   {
     "protocol": "Ekubo",
@@ -142,6 +142,6 @@
   {
     "protocol": "Ember",
     "chain": "Sui",
-    "tvl": "0.82050153"
+    "tvl": "0.8201707"
   }
 ]
