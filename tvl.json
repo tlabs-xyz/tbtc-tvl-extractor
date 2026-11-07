@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1626.633647220681761275"
+    "tvl": "1600.565169861787362196"
   },
   {
     "protocol": "Asymmetry",
@@ -12,12 +12,12 @@
   {
     "protocol": "Compound",
     "chain": "Ethereum",
-    "tvl": "89.585464016391605043"
+    "tvl": "89.590564016391605043"
   },
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "510.973939190480777272"
+    "tvl": "521.894125863062562431"
   },
   {
     "protocol": "Gearbox",
@@ -32,7 +32,7 @@
   {
     "protocol": "Morpho",
     "chain": "Ethereum",
-    "tvl": "31.063433693380013724"
+    "tvl": "30.983433693380013724"
   },
   {
     "protocol": "Spark/Maker",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "97.801716651685149962"
+    "tvl": "103.763884475961713883"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "220.621470496497374088"
+    "tvl": "224.384880030938517651"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "4.176616491951689758"
+    "tvl": "4.359367861699323578"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "6.274304366962649062"
+    "tvl": "6.499797983558299069"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "3.035512527224630077"
+    "tvl": "3.034573473755102511"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "3.670170168087792075"
+    "tvl": "4.11581569681004719"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "6.351178616623200813"
+    "tvl": "6.431576435832799945"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.006703220276136138"
+    "tvl": "1.046204804080356608"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.304901306999923857"
+    "tvl": "0.312191133959047611"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "0.937973493304605445"
+    "tvl": "0.991597082726619982"
   },
   {
     "protocol": "Ekubo",
