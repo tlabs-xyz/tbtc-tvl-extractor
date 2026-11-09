@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-09T14:51:10.287Z",
+    "version": "1.0.0",
+    "runId": "1dca95e4-9c9a-418f-ab1c-b5d070f6ce5e"
+  },
+  "chains": {
+    "ethereum": {
+      "totalTvl": "2602564052046933101293",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "1595863544244103234218",
+          "timestamp": "2026-11-09T14:50:21.586Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Compound",
+          "tvl": "89590564016391605043",
+          "timestamp": "2026-11-09T14:50:36.397Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Curve",
+          "tvl": "528010008643529353044",
+          "timestamp": "2026-11-09T14:50:39.023Z",
+          "blockNumber": 26378044,
+          "source": "rpc"
+        },
+        {
+          "name": "Gearbox",
+          "tvl": "2025867343959404",
+          "timestamp": "2026-11-09T14:50:39.100Z",
+          "blockNumber": 26378044,
+          "source": "rpc"
+        },
+        {
+          "name": "Morpho",
+          "tvl": "33386133693380013724",
+          "timestamp": "2026-11-09T14:50:39.143Z",
+          "blockNumber": 26378044,
+          "source": "rpc"
+        },
+        {
+          "name": "Spark Lend",
+          "tvl": "20851732053705238424",
+          "timestamp": "2026-11-09T14:50:39.285Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Uniswap",
+          "tvl": "96450376197920378096",
+          "timestamp": "2026-11-09T14:50:39.482Z",
+          "blockNumber": 26378044,
+          "source": "rpc"
+        },
+        {
+          "name": "Yield Basis",
+          "tvl": "238409667330559319340",
+          "timestamp": "2026-11-09T14:50:39.607Z",
+          "blockNumber": 26378044,
+          "source": "rpc"
+        }
+      ]
+    },
+    "arbitrum": {
+      "totalTvl": "18232486018210581060",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "8698784632348623875",
+          "timestamp": "2026-11-09T14:50:39.752Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Curve",
+          "tvl": "4043644505835908451",
+          "timestamp": "2026-11-09T14:50:41.179Z",
+          "blockNumber": 522707354,
+          "source": "rpc"
+        },
+        {
+          "name": "Uniswap",
+          "tvl": "5490056880026048734",
+          "timestamp": "2026-11-09T14:50:41.443Z",
+          "blockNumber": 522707355,
+          "source": "rpc"
+        }
+      ]
+    },
+    "base": {
+      "totalTvl": "14077269902327391337",
+      "protocols": [
+        {
+          "name": "Aave V3",
+          "tvl": "3033503630477841181",
+          "timestamp": "2026-11-09T14:50:41.646Z",
+          "source": "subgraph"
+        },
+        {
+          "name": "Aerodrome",
+          "tvl": "4204170061026003353",
+          "timestamp": "2026-11-09T14:50:42.040Z",
+          "blockNumber": 55227332,
+          "source": "rpc"
+        },
+        {
+          "name": "Curve",
+          "tvl": "6839596210823546803",
+          "timestamp": "2026-11-09T14:50:43.478Z",
+          "blockNumber": 55227339,
+          "source": "rpc"
+        }
+      ]
+    },
+    "starknet": {
+      "totalTvl": "0",
+      "protocols": [
+        {
+          "name": "Vesu",
+          "tvl": "0",
+          "timestamp": "2026-11-09T14:50:56.869Z",
+          "blockNumber": 0,
+          "source": "rpc"
+        }
+      ]
+    },
+    "sui": {
+      "totalTvl": "814441730000000000",
+      "protocols": [
+        {
+          "name": "Ember",
+          "tvl": "814441730000000000",
+          "timestamp": "2026-11-09T14:51:10.286Z",
+          "source": "api"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalTvl": "2635688249697471073690",
+    "successRate": 1,
+    "protocolCount": 11,
+    "chainCount": 5
+  },
+  "validationReport": {
+    "passed": true,
+    "warnings": [
+      {
+        "level": "warning",
+        "message": "TVL is zero",
+        "protocol": "Vesu",
+        "chain": "starknet"
+      }
+    ],
+    "errors": [],
+    "summary": {
+      "totalChecks": 32,
+      "passedChecks": 32,
+      "warningCount": 1,
+      "errorCount": 0
+    }
+  }
+}
