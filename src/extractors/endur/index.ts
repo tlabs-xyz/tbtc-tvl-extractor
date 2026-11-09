@@ -1,7 +1,7 @@
 import { BaseExtractor } from '../base.js'
 import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
-import { ENDUR_TBTC_VAULTS, STARKNET_RPC_URL } from './config.js'
-import { RpcProvider } from 'starknet'
+import { StarknetRpc, TOTAL_ASSETS_SELECTOR } from '../../utils/starknet.js'
+import { ENDUR_TBTC_VAULTS } from './config.js'
 
 export class EndurExtractor extends BaseExtractor {
   readonly protocolName = 'Endur'
@@ -11,48 +11,33 @@ export class EndurExtractor extends BaseExtractor {
   async extract(chain: Chain): Promise<ExtractionResult> {
     return this.withRetry(
       () => this.extractViaRpc(chain),
-      `Endur extraction for ${chain}`
+      `Endur extraction for ${chain}`,
     )
   }
 
   private async extractViaRpc(chain: Chain): Promise<ExtractionResult> {
     const vaults = ENDUR_TBTC_VAULTS[chain]
-
-    if (!vaults || vaults.length === 0) {
+    if (!vaults?.length)
       throw new Error(`Endur vaults not configured for chain: ${chain}`)
-    }
 
-    const provider = new RpcProvider({ nodeUrl: STARKNET_RPC_URL })
-
-    let totalTvl = 0n
+    const rpc = new StarknetRpc(undefined, this.options.timeout)
+    const blockNumber = await rpc.getBlockNumber()
+    let tvl = 0n
     for (const vault of vaults) {
-      try {
-        // ERC4626 vaults report their TVL via total_assets()
-        const result = await provider.callContract({
-          contractAddress: vault.vaultAddress,
-          entrypoint: 'total_assets',
-          calldata: []
-        })
-
-        if (result && result.length > 0) {
-          const low = BigInt(result[0])
-          const high = result[1] ? BigInt(result[1]) : 0n
-          totalTvl += low + (high << 128n)
-        }
-      } catch (error) {
-        this.logger.warn({ vault: vault.name, error: error instanceof Error ? error.message : String(error) }, 'Failed to query vault total_assets')
-      }
+      tvl += await rpc.readUint256(
+        vault.vaultAddress,
+        TOTAL_ASSETS_SELECTOR,
+        [],
+        blockNumber,
+      )
     }
-
-    const blockNumber = await provider.getBlockNumber()
-
     return {
       protocol: this.protocolName,
       chain,
-      tvl: totalTvl,
-      timestamp: new Date(),
+      tvl,
       blockNumber,
-      metadata: { source: this.source, endpoint: STARKNET_RPC_URL }
+      timestamp: new Date(),
+      metadata: { source: this.source, endpoint: rpc.endpoint },
     }
   }
 }
