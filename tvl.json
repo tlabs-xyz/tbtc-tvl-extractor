@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1599.925681356379434712"
+    "tvl": "1595.898694262175469061"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "519.411966117926350847"
+    "tvl": "534.597709725383283136"
   },
   {
     "protocol": "Gearbox",
@@ -32,7 +32,7 @@
   {
     "protocol": "Morpho",
     "chain": "Ethereum",
-    "tvl": "30.983433693380013724"
+    "tvl": "33.386133693380013724"
   },
   {
     "protocol": "Spark/Maker",
@@ -42,12 +42,12 @@
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "102.211278503465252948"
+    "tvl": "96.024132301468766137"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "223.4600279512840396"
+    "tvl": "245.970818733178992329"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "4.258489851609118813"
+    "tvl": "4.043638221935366204"
   },
   {
     "protocol": "Nerite",
@@ -67,37 +67,37 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "6.451237810708694432"
+    "tvl": "5.447421283256575701"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "3.034436006093503011"
+    "tvl": "3.034442683947368747"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "4.014421072866208921"
+    "tvl": "4.191083258828277206"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "6.359252760821104393"
+    "tvl": "6.840330738644493946"
   },
   {
     "protocol": "Curve",
     "chain": "Optimism",
-    "tvl": "1.0462027498748714"
+    "tvl": "1.064702580966944045"
   },
   {
     "protocol": "Uniswap",
     "chain": "Optimism",
-    "tvl": "0.308434627529006705"
+    "tvl": "0.318004469954062256"
   },
   {
     "protocol": "Velodrome",
     "chain": "Optimism",
-    "tvl": "0.991387494314663583"
+    "tvl": "0.945586625773846873"
   },
   {
     "protocol": "Ekubo",
