@@ -2,7 +2,7 @@
   {
     "protocol": "Aave",
     "chain": "Ethereum",
-    "tvl": "1326.801600061270153897"
+    "tvl": "1295.227469838399885911"
   },
   {
     "protocol": "Asymmetry",
@@ -17,7 +17,7 @@
   {
     "protocol": "Curve",
     "chain": "Ethereum",
-    "tvl": "600.006090320071602301"
+    "tvl": "590.07153000844248649"
   },
   {
     "protocol": "Gearbox",
@@ -32,22 +32,22 @@
   {
     "protocol": "Morpho",
     "chain": "Ethereum",
-    "tvl": "33.821457129230898104"
+    "tvl": "33.722522613871125863"
   },
   {
     "protocol": "Spark/Maker",
     "chain": "Ethereum",
-    "tvl": "20.591732053705782669"
+    "tvl": "20.591732053705782714"
   },
   {
     "protocol": "Uniswap",
     "chain": "Ethereum",
-    "tvl": "125.436599524363990303"
+    "tvl": "125.766100619050551093"
   },
   {
     "protocol": "Yield Basis",
     "chain": "Ethereum",
-    "tvl": "298.474184243771927918"
+    "tvl": "285.62738557442989631"
   },
   {
     "protocol": "Aave",
@@ -57,7 +57,7 @@
   {
     "protocol": "Curve",
     "chain": "Arbitrum",
-    "tvl": "4.818610786186815096"
+    "tvl": "4.672547374442755525"
   },
   {
     "protocol": "Nerite",
@@ -67,22 +67,22 @@
   {
     "protocol": "Uniswap",
     "chain": "Arbitrum",
-    "tvl": "4.787788153247546576"
+    "tvl": "4.088472527670671623"
   },
   {
     "protocol": "Aave",
     "chain": "Base",
-    "tvl": "2.700217431827268816"
+    "tvl": "2.662691124719537273"
   },
   {
     "protocol": "Aerodrome",
     "chain": "Base",
-    "tvl": "3.844352042926555112"
+    "tvl": "3.576526486263490874"
   },
   {
     "protocol": "Curve",
     "chain": "Base",
-    "tvl": "7.35463232067034176"
+    "tvl": "7.099396817276995405"
   },
   {
     "protocol": "Ekubo",
