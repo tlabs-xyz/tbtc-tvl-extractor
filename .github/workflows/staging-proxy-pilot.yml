@@ -3,7 +3,10 @@ name: Staging RPC proxy pilot
 on:
   push:
     branches: [staging-tvl-pilot]
-    paths: [.github/workflows/staging-proxy-pilot.yml]
+    paths:
+      - .github/workflows/staging-proxy-pilot.yml
+      - src/pilot/**
+      - tests/staging-proxy-pilot.test.ts
 
 permissions:
   contents: read

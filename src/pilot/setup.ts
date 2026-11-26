@@ -1,4 +1,4 @@
-import { createPilotFetch, STAGING_RPC } from './proxy-fetch.js'
+import { createPilotFetch, PILOT_STARKNET_RPC, STAGING_RPC } from './proxy-fetch.js'
 
 const token = process.env.STAGING_RPC_PROXY_TOKEN?.trim()
 if (!token) throw new Error('STAGING_RPC_PROXY_TOKEN is required')
@@ -10,7 +10,7 @@ process.env.BASE_RPC = STAGING_RPC.base
 process.env.ARBITRUM_RPC = STAGING_RPC.arbitrum
 process.env.ETHEREUM_FALLBACK_RPC = ''
 process.env.LOG_LEVEL = 'silent'
-process.env.STARKNET_RPC = 'https://rpc.starknet.lava.build'
+process.env.STARKNET_RPC = PILOT_STARKNET_RPC
 process.env.SUI_RPC = 'https://sui-rpc.publicnode.com'
 
 const guard = createPilotFetch(token, globalThis.fetch)

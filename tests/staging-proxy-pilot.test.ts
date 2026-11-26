@@ -26,6 +26,7 @@ describe('staging proxy pilot', () => {
     const send = vi.fn<typeof fetch>().mockImplementation(async () => new Response('{}'))
     const guard = createPilotFetch('fixture-token', send)
     await guard.fetch('https://gateway.thegraph.com/api/fixture-graph-key/subgraphs/id/fixture', { method: 'POST' })
+    await guard.fetch('https://starknet-rpc.publicnode.com/', { method: 'POST' })
     await guard.fetch('https://sui-rpc.publicnode.com', { method: 'POST' })
     await guard.fetch('https://swap.api.sui-prod.bluefin.io/api/v1/pools/info')
     expect(send.mock.calls.every(([request]) => !(request as Request).headers.has('Authorization'))).toBe(true)

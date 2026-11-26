@@ -32,6 +32,7 @@ GitHub Actions runs daily at 8am UTC, publishing to GitHub Pages.
 Requires `THEGRAPH_API_KEY` and `ALCHEMY_API_KEY` secrets.
 
 The `staging-tvl-pilot` branch runs the full extractor without publishing to Pages.
-Ethereum, Base, and Arbitrum RPC use the staging proxy only. Starknet and Sui
-use public RPC. The pilot uses its environment's `STAGING_RPC_PROXY_TOKEN`
-and the existing repository `THEGRAPH_API_KEY`. CI uploads only `pilot-output/tvl.json`.
+Ethereum, Base, and Arbitrum RPC use the staging proxy only. Starknet uses
+PublicNode instead of the retired Lava endpoint. Sui's public RPC is unchanged.
+The pilot uses its environment's `STAGING_RPC_PROXY_TOKEN` and the existing
+repository `THEGRAPH_API_KEY`. CI uploads only `pilot-output/tvl.json`.

@@ -4,6 +4,8 @@ export const STAGING_RPC = {
   arbitrum: 'https://arb-mainnet.rpc-staging.tnetworklabs.com/v2'
 } as const
 
+export const PILOT_STARKNET_RPC = 'https://starknet-rpc.publicnode.com/'
+
 function isExtractionDependency(request: Request, url: URL): boolean {
   if (request.method === 'GET') {
     return (url.origin === 'https://api.curve.finance' && url.pathname.startsWith('/v1/getPools/'))
@@ -12,7 +14,7 @@ function isExtractionDependency(request: Request, url: URL): boolean {
   }
   return request.method === 'POST' && (
     (url.origin === 'https://gateway.thegraph.com' && /^\/api\/[^/]+\/subgraphs\/id\/[^/]+$/.test(url.pathname))
-    || url.origin === 'https://rpc.starknet.lava.build'
+    || request.url === PILOT_STARKNET_RPC
     || url.origin === 'https://sui-rpc.publicnode.com'
   )
 }
