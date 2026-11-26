@@ -31,7 +31,7 @@ Generates `data/output/tvl.json`:
 GitHub Actions runs daily at 8am UTC, publishing to GitHub Pages.
 Requires `THEGRAPH_API_KEY` and `ALCHEMY_API_KEY` secrets.
 
-The `staging-tvl-pilot` branch runs a separate CI workflow for Curve TVL on Ethereum,
-Base, and Arbitrum. The job uses `STAGING_RPC_PROXY_TOKEN` from the branch's
-GitHub environment, rejects other RPC endpoints, and uploads
-`staging-proxy-extraction.json`. It does not publish to GitHub Pages.
+The `staging-tvl-pilot` branch runs the full extractor without publishing to Pages.
+Ethereum, Base, and Arbitrum RPC use the staging proxy only. Starknet and Sui
+use public RPC. The pilot uses its environment's `STAGING_RPC_PROXY_TOKEN`
+and the existing repository `THEGRAPH_API_KEY`. CI uploads only `pilot-output/tvl.json`.

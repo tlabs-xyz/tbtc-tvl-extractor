@@ -24,13 +24,19 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Verify direct fallback is rejected
         run: npm test -- tests/staging-proxy-pilot.test.ts
-      - name: Extract Curve TVL through staging
-        run: node --import tsx src/pilot/extract.ts
+      - name: Run full TVL extraction through staging
+        run: node --import tsx --import ./src/pilot/setup.ts src/index.ts
         env:
           STAGING_RPC_PROXY_TOKEN: ${{ secrets.STAGING_RPC_PROXY_TOKEN }}
+          THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
+          NODE_ENV: production
+          OUTPUT_DIR: pilot-output
+      - name: Verify full extraction coverage
+        run: node src/pilot/check-output.mjs
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: staging-proxy-extraction
-          path: staging-proxy-extraction.json
+          path: pilot-output/tvl.json
           if-no-files-found: error
           retention-days: 7

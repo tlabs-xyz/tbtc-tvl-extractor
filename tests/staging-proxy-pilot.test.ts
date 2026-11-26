@@ -21,4 +21,22 @@ describe('staging proxy pilot', () => {
     expect(discovery.headers.has('Authorization')).toBe(false)
     expect(discovery.redirect).toBe('error')
   })
+
+  it('requires a successful response from each staging RPC and keeps its token off external dependencies', async () => {
+    const send = vi.fn<typeof fetch>().mockImplementation(async () => new Response('{}'))
+    const guard = createPilotFetch('fixture-token', send)
+    await guard.fetch('https://gateway.thegraph.com/api/fixture-graph-key/subgraphs/id/fixture', { method: 'POST' })
+    await guard.fetch('https://sui-rpc.publicnode.com', { method: 'POST' })
+    await guard.fetch('https://swap.api.sui-prod.bluefin.io/api/v1/pools/info')
+    expect(send.mock.calls.every(([request]) => !(request as Request).headers.has('Authorization'))).toBe(true)
+    for (const endpoint of [STAGING_RPC.ethereum, STAGING_RPC.arbitrum]) {
+      await guard.fetch(endpoint, { method: 'POST' })
+    }
+    send.mockResolvedValueOnce(new Response('{}', { status: 503 }))
+    await guard.fetch(STAGING_RPC.base, { method: 'POST' })
+    expect(() => guard.assertCoverage()).toThrow('all three')
+    await guard.fetch(STAGING_RPC.base, { method: 'POST' })
+    guard.assertCoverage()
+    guard.assertClean()
+  })
 })
