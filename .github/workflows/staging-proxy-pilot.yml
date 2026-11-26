@@ -32,7 +32,7 @@ jobs:
           NODE_ENV: production
           OUTPUT_DIR: pilot-output
       - name: Verify full extraction coverage
-        run: node src/pilot/check-output.mjs
+        run: node --import tsx src/pilot/check-output.ts
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
