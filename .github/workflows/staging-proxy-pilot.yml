@@ -1,0 +1,36 @@
+name: Staging RPC proxy pilot
+
+on:
+  push:
+    branches: [staging-tvl-pilot]
+    paths: [.github/workflows/staging-proxy-pilot.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: staging-tvl-pilot
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.5'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify direct fallback is rejected
+        run: npm test -- tests/staging-proxy-pilot.test.ts
+      - name: Extract Curve TVL through staging
+        run: node --import tsx src/pilot/extract.ts
+        env:
+          STAGING_RPC_PROXY_TOKEN: ${{ secrets.STAGING_RPC_PROXY_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: staging-proxy-extraction
+          path: staging-proxy-extraction.json
+          if-no-files-found: error
+          retention-days: 7
