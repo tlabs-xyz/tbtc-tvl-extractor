@@ -30,6 +30,8 @@ jobs:
         env:
           THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
           ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          TVL_EVM_RPC_PROXY: ${{ vars.TVL_EVM_RPC_PROXY_ENABLED == 'true' && 'production' || '' }}
+          TVL_EVM_RPC_PROXY_TOKEN: ${{ vars.TVL_EVM_RPC_PROXY_ENABLED == 'true' && secrets.TVL_EVM_RPC_PROXY_TOKEN || '' }}
           # Safety net when no Alchemy key is configured: the default public
           # Ethereum RPC (eth.llamarpc.com) has proven unreliable. Override
           # via the ETHEREUM_FALLBACK_RPC repo variable without a commit.

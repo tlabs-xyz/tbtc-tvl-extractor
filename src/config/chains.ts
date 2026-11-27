@@ -4,6 +4,26 @@ import { Chain } from '../types/index.js'
 
 const alchemyApiKey = process.env.ALCHEMY_API_KEY?.trim()
 
+const proxyMode = process.env.TVL_EVM_RPC_PROXY
+const proxyToken = process.env.TVL_EVM_RPC_PROXY_TOKEN?.trim()
+if (proxyMode && proxyMode !== 'staging' && proxyMode !== 'production') {
+  throw new Error('TVL_EVM_RPC_PROXY must be staging or production')
+}
+if (proxyMode && !proxyToken) {
+  throw new Error('TVL_EVM_RPC_PROXY_TOKEN is required when the EVM proxy is enabled')
+}
+
+const proxyHost = proxyMode === 'staging'
+  ? 'rpc-staging.tnetworklabs.com'
+  : 'rpc.tnetworklabs.com'
+const proxyEndpoints: Partial<Record<Chain, string>> = proxyMode
+  ? {
+      [Chain.ETHEREUM]: `https://eth-mainnet.${proxyHost}/v2`,
+      [Chain.ARBITRUM]: `https://arb-mainnet.${proxyHost}/v2`,
+      [Chain.BASE]: `https://base-mainnet.${proxyHost}/v2`
+    }
+  : {}
+
 function getAlchemyRpcUrl(network: 'eth-mainnet' | 'arb-mainnet' | 'base-mainnet' | 'opt-mainnet'): string | undefined {
   if (!alchemyApiKey) return undefined
   return `https://${network}.g.alchemy.com/v2/${alchemyApiKey}`
@@ -34,8 +54,17 @@ export function createEvmHttpTransport(chain: Chain, timeoutMs?: number): Transp
   if (!config.isEVM) {
     throw new Error(`Not an EVM chain: ${chain}`)
   }
-  const t = timeoutMs ?? 10000
-  const opts = { timeout: t }
+  const opts = { timeout: timeoutMs ?? 10000 }
+  const proxyEndpoint = proxyEndpoints[chain]
+  if (proxyEndpoint) {
+    return http(proxyEndpoint, {
+      ...opts,
+      fetchOptions: {
+        headers: { Authorization: `Bearer ${proxyToken}` },
+        redirect: 'error'
+      }
+    })
+  }
   const primary = http(config.rpcUrl, opts)
   if (config.fallbackRpcUrl) {
     return fallback([primary, http(config.fallbackRpcUrl, opts)], {
@@ -49,20 +78,20 @@ export const CHAIN_CONFIGS: Record<Chain, ChainConfig> = {
   [Chain.ETHEREUM]: {
     name: 'Ethereum',
     chainId: 1,
-    rpcUrl: process.env.ETHEREUM_RPC || getAlchemyRpcUrl('eth-mainnet') || 'https://eth.llamarpc.com',
-    fallbackRpcUrl: process.env.ETHEREUM_FALLBACK_RPC,
+    rpcUrl: proxyEndpoints[Chain.ETHEREUM] || process.env.ETHEREUM_RPC || getAlchemyRpcUrl('eth-mainnet') || 'https://eth.llamarpc.com',
+    fallbackRpcUrl: proxyMode ? undefined : process.env.ETHEREUM_FALLBACK_RPC,
     isEVM: true
   },
   [Chain.ARBITRUM]: {
     name: 'Arbitrum',
     chainId: 42161,
-    rpcUrl: process.env.ARBITRUM_RPC || getAlchemyRpcUrl('arb-mainnet') || 'https://arb1.arbitrum.io/rpc',
+    rpcUrl: proxyEndpoints[Chain.ARBITRUM] || process.env.ARBITRUM_RPC || getAlchemyRpcUrl('arb-mainnet') || 'https://arb1.arbitrum.io/rpc',
     isEVM: true
   },
   [Chain.BASE]: {
     name: 'Base',
     chainId: 8453,
-    rpcUrl: process.env.BASE_RPC || getAlchemyRpcUrl('base-mainnet') || 'https://mainnet.base.org',
+    rpcUrl: proxyEndpoints[Chain.BASE] || process.env.BASE_RPC || getAlchemyRpcUrl('base-mainnet') || 'https://mainnet.base.org',
     isEVM: true
   },
   [Chain.OPTIMISM]: {

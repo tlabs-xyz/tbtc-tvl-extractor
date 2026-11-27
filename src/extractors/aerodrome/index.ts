@@ -1,12 +1,12 @@
 import { BaseExtractor } from '../base.js'
 import { Chain, ExtractionResult, ExtractionSource } from '../../types/index.js'
 import { GraphQLClient } from 'graphql-request'
-import { createPublicClient, http, parseAbi } from 'viem'
+import { createPublicClient, parseAbi } from 'viem'
 import { base } from 'viem/chains'
 import { GetTBTCPoolsQuery } from './queries.js'
 import { AerodromePoolSchema } from './schema.js'
 import { getAerodromeEndpoint } from './config.js'
-import { TBTC_ADDRESSES, CHAIN_CONFIGS } from '../../config/index.js'
+import { TBTC_ADDRESSES, CHAIN_CONFIGS, createEvmHttpTransport } from '../../config/index.js'
 
 const ERC20_ABI = parseAbi([
   'function balanceOf(address) view returns (uint256)'
@@ -34,7 +34,7 @@ export class AerodromeExtractor extends BaseExtractor {
     // Step 2: Get on-chain balances via RPC
     const client = createPublicClient({
       chain: base,
-      transport: http(chainConfig.rpcUrl, { timeout: this.options.timeout ?? 10000 })
+      transport: createEvmHttpTransport(chain, this.options.timeout)
     })
 
     let totalTvl = 0n
