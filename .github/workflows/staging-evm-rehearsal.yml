@@ -1,0 +1,60 @@
+name: Staging EVM cutover rehearsal
+
+on:
+  push:
+    branches: [staging-tvl-pilot]
+    paths:
+      - .github/workflows/staging-evm-rehearsal.yml
+      - scripts/staging-evm-guard.ts
+
+permissions:
+  contents: read
+
+jobs:
+  rehearse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: staging-tvl-pilot
+    defaults:
+      run:
+        working-directory: rehearsal-source
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 19d1cfc12615aeb2e8211c3f211c764c5a9f53d7
+          path: rehearsal-source
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.5'
+          cache: npm
+          cache-dependency-path: rehearsal-source/package-lock.json
+      - run: npm ci --ignore-scripts
+      - name: Verify opt-in routing and rollback
+        run: npm test -- tests/evm-rpc-routing.test.ts tests/uniswap-extractor.test.ts
+      - name: Select the rehearsal input without modifying the full coverage gate
+        run: |
+          input=data/use-tbtc-protocols.json
+          jq -e 'map(select(.chain == "Ethereum" or .chain == "Arbitrum" or .chain == "Base")) | select(length == 17)' "$input" > "$input.evm"
+          mv "$input.evm" "$input"
+      - name: Run the reviewed extractor without publishing
+        run: node --import tsx --import ../scripts/staging-evm-guard.ts src/index.ts
+        env:
+          TVL_EVM_RPC_PROXY: staging
+          TVL_EVM_RPC_PROXY_TOKEN: ${{ secrets.STAGING_RPC_PROXY_TOKEN }}
+          THEGRAPH_API_KEY: ${{ secrets.THEGRAPH_API_KEY }}
+          NODE_ENV: production
+          LOG_LEVEL: silent
+          OUTPUT_DIR: pilot-output
+      - name: Verify EVM rows with the existing coverage gate
+        run: node --import tsx ../src/pilot/check-output.ts
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: staging-evm-rehearsal
+          path: rehearsal-source/pilot-output/tvl.json
+          if-no-files-found: error
+          retention-days: 7
